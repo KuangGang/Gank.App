@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">GankApp</string>
+    <string name="app_name">干货</string>
+    <string name="title_part1">干</string>
+    <string name="title_part2">货</string>
 </resources>
