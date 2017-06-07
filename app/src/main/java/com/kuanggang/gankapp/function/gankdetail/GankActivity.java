@@ -10,9 +10,9 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.widget.FrameLayout;
 
 import com.kuanggang.gankapp.R;
+import com.kuanggang.gankapp.utils.ActivityUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -21,8 +21,6 @@ public class GankActivity extends AppCompatActivity {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @BindView(R.id.contentFrameLayout)
-    FrameLayout contentFrameLayout;
     @BindView(R.id.floatingActionButton)
     FloatingActionButton floatingActionButton;
     @BindView(R.id.coordinatorlayout)
@@ -32,6 +30,8 @@ public class GankActivity extends AppCompatActivity {
     @BindView(R.id.drawerlayout)
     DrawerLayout drawerlayout;
 
+    private GankContract.Presenter mPresenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +39,7 @@ public class GankActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         initActionBar();
+        bindViewAndPresenter();
     }
 
     private void initActionBar() {
@@ -48,6 +49,16 @@ public class GankActivity extends AppCompatActivity {
         ab.setTitle("");
         ab.setHomeAsUpIndicator(R.drawable.ic_menu);
         ab.setDisplayHomeAsUpEnabled(true);
+    }
+
+    private void bindViewAndPresenter() {
+        GankFragment gankFragment = (GankFragment) getSupportFragmentManager().findFragmentById(R.id.contentFrameLayout);
+        if (gankFragment == null){
+            gankFragment = GankFragment.newInstance();
+            ActivityUtils.addFragmentToActivity(getSupportFragmentManager(), gankFragment, R.id.contentFrameLayout);
+        }
+
+        mPresenter = new GankPresenter(gankFragment);
     }
 
     @Override

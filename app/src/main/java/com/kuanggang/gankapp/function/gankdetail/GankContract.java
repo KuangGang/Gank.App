@@ -9,7 +9,7 @@ import com.kuanggang.gankapp.base.BaseView;
 
 public interface GankContract {
 
-    interface View extends BaseView {
+    interface View extends BaseView<Presenter> {
 
     }
 
