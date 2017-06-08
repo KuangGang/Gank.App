@@ -9,11 +9,15 @@ import com.kuanggang.gankapp.base.BaseRemoteRepository;
 
 public interface RepositoryContract {
 
+    interface GetDataCallback<T> {
+
+        void onDataLoaded(T entity);
+
+        void onDataNotAvailable(String msg);
+    }
+
     interface RemoteRepository extends BaseRemoteRepository{
-
-        void onSuccess(DataSource entity);
-
-        void onFail(String msg);
+        void getGankDay(GetDataCallback getDataCallback);
     }
 
     interface LocalRepository extends BaseLocalRepository{

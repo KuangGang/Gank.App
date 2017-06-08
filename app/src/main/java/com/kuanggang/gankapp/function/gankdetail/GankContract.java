@@ -14,6 +14,6 @@ public interface GankContract {
     }
 
     interface Presenter extends BasePresenter {
-
+        void showGankDay();
     }
 }

@@ -12,6 +12,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.kuanggang.gankapp.R;
+import com.kuanggang.gankapp.data.DataRepository;
+import com.kuanggang.gankapp.data.local.LocalDataSource;
+import com.kuanggang.gankapp.data.remote.RemoteDataSource;
 import com.kuanggang.gankapp.utils.ActivityUtils;
 
 import butterknife.BindView;
@@ -58,7 +61,8 @@ public class GankActivity extends AppCompatActivity {
             ActivityUtils.addFragmentToActivity(getSupportFragmentManager(), gankFragment, R.id.contentFrameLayout);
         }
 
-        mPresenter = new GankPresenter(gankFragment);
+        DataRepository dataRepository = new DataRepository(new RemoteDataSource(), new LocalDataSource());
+        mPresenter = new GankPresenter(gankFragment, dataRepository);
     }
 
     @Override

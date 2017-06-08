@@ -33,7 +33,7 @@
 
                 <com.kuanggang.gankapp.widget.FontTextView
                     style="@style/GankTitle"
-                    android:layout_marginLeft="14dp"
+                    android:layout_marginLeft="13dp"
                     android:text="@string/title_part2" />
             </LinearLayout>
         </android.support.v7.widget.Toolbar>

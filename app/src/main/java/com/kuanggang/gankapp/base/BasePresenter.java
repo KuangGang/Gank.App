@@ -7,6 +7,4 @@ package com.kuanggang.gankapp.base;
 
 public interface BasePresenter {
 
-    void start();
-
 }
