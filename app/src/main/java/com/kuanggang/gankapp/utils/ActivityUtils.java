@@ -21,6 +21,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
+import com.kuanggang.gankapp.data.DataRepository;
+import com.kuanggang.gankapp.data.local.LocalDataSource;
+import com.kuanggang.gankapp.data.remote.RemoteDataSource;
+import com.kuanggang.gankapp.function.gankdetail.GankPresenter;
+
 /**
  * @author KG
  */

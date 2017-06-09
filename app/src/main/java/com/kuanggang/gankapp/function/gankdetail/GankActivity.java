@@ -1,21 +1,20 @@
 package com.kuanggang.gankapp.function.gankdetail;
 
 import android.os.Bundle;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.kuanggang.gankapp.R;
-import com.kuanggang.gankapp.data.DataRepository;
-import com.kuanggang.gankapp.data.local.LocalDataSource;
-import com.kuanggang.gankapp.data.remote.RemoteDataSource;
-import com.kuanggang.gankapp.utils.ActivityUtils;
+import com.kuanggang.gankapp.adapter.GankAdapter;
+import com.kuanggang.gankapp.widget.FontTextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -24,16 +23,14 @@ public class GankActivity extends AppCompatActivity {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @BindView(R.id.floatingActionButton)
-    FloatingActionButton floatingActionButton;
-    @BindView(R.id.coordinatorlayout)
-    CoordinatorLayout coordinatorlayout;
+    @BindView(R.id.tablayout)
+    TabLayout tablayout;
+    @BindView(R.id.viewpager)
+    ViewPager viewpager;
     @BindView(R.id.navigationView)
     NavigationView navigationView;
     @BindView(R.id.drawerlayout)
     DrawerLayout drawerlayout;
-
-    private GankContract.Presenter mPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +39,8 @@ public class GankActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         initActionBar();
-        bindViewAndPresenter();
+        initTabLayoutViewPager();
+        initListener();
     }
 
     private void initActionBar() {
@@ -54,15 +52,42 @@ public class GankActivity extends AppCompatActivity {
         ab.setDisplayHomeAsUpEnabled(true);
     }
 
-    private void bindViewAndPresenter() {
-        GankFragment gankFragment = (GankFragment) getSupportFragmentManager().findFragmentById(R.id.contentFrameLayout);
-        if (gankFragment == null){
-            gankFragment = GankFragment.newInstance();
-            ActivityUtils.addFragmentToActivity(getSupportFragmentManager(), gankFragment, R.id.contentFrameLayout);
-        }
+    private void initTabLayoutViewPager() {
+        GankAdapter gankAdapter = new GankAdapter(getSupportFragmentManager());
+        viewpager.setAdapter(gankAdapter);
+        tablayout.setupWithViewPager(viewpager);
 
-        DataRepository dataRepository = new DataRepository(new RemoteDataSource(), new LocalDataSource());
-        mPresenter = new GankPresenter(gankFragment, dataRepository);
+        // 自定义tab布局
+        String[] titles = gankAdapter.getTitles();
+        for (int i = 0; i < titles.length; i++) {
+            View tabView = View.inflate(this, R.layout.custom_tablayout_item, null);
+            FontTextView tv = (FontTextView) tabView.findViewById(R.id.tv);
+            tv.setText(titles[i]);
+            if (i == 0)
+                tv.setSelected(true);
+
+            TabLayout.Tab tab = tablayout.getTabAt(i);
+            tab.setCustomView(tabView);
+        }
+    }
+
+    private void initListener() {
+        tablayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                tab.getCustomView().findViewById(R.id.tv).setSelected(true);
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+                tab.getCustomView().findViewById(R.id.tv).setSelected(false);
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
     }
 
     @Override
