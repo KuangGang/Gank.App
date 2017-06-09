@@ -42,13 +42,13 @@
             android:id="@+id/tablayout"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:background="@color/colorPrimary"
-            app:tabIndicatorColor="@android:color/white"
+            android:background="@android:color/white"
+            app:tabIndicatorColor="@color/colorPrimary"
             app:tabIndicatorHeight="2dp"
             app:tabMode="scrollable"
             app:tabSelectedTextColor="@android:color/white"
             app:tabTextAppearance="@style/TabLayoutTextStyle"
-            app:tabTextColor="@color/color_aaffffff" />
+            app:tabTextColor="@color/color_transPrimary" />
 
         <android.support.v4.view.ViewPager
             android:id="@+id/viewpager"
