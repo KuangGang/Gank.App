@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.kuanggang.gankapp.R;
 import com.orhanobut.logger.Logger;
 
 /**
@@ -41,8 +42,9 @@ public class GankFragment extends Fragment implements GankContract.View {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View root = inflater.inflate(R.layout.fragment_gank, container, false);
         mPresenter.showGankDay();
         Logger.d(getArguments().getString(BUNDLE_KEY));
-        return super.onCreateView(inflater, container, savedInstanceState);
+        return root;
     }
 }
