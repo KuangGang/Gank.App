@@ -1,4 +1,4 @@
-package com.kuanggang.gankapp.widget;
+package com.kuanggang.gankapp.widget.customview;
 
 import android.content.Context;
 import android.support.annotation.Nullable;

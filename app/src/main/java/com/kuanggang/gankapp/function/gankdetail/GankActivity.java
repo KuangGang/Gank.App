@@ -13,8 +13,8 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.kuanggang.gankapp.R;
-import com.kuanggang.gankapp.adapter.GankAdapter;
-import com.kuanggang.gankapp.widget.FontTextView;
+import com.kuanggang.gankapp.widget.adapter.GankPagerAdapter;
+import com.kuanggang.gankapp.widget.customview.FontTextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -53,12 +53,12 @@ public class GankActivity extends AppCompatActivity {
     }
 
     private void initTabLayoutViewPager() {
-        GankAdapter gankAdapter = new GankAdapter(getSupportFragmentManager());
-        viewpager.setAdapter(gankAdapter);
+        GankPagerAdapter gankPagerAdapter = new GankPagerAdapter(getSupportFragmentManager());
+        viewpager.setAdapter(gankPagerAdapter);
         tablayout.setupWithViewPager(viewpager);
 
         // 自定义tab布局
-        String[] titles = gankAdapter.getTitles();
+        String[] titles = gankPagerAdapter.getTitles();
         for (int i = 0; i < titles.length; i++) {
             View tabView = View.inflate(this, R.layout.custom_tablayout_item, null);
             FontTextView tv = (FontTextView) tabView.findViewById(R.id.tv);

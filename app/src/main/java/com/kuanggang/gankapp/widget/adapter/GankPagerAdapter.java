@@ -1,4 +1,4 @@
-package com.kuanggang.gankapp.adapter;
+package com.kuanggang.gankapp.widget.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -10,16 +10,18 @@ import com.kuanggang.gankapp.data.remote.RemoteDataSource;
 import com.kuanggang.gankapp.function.gankdetail.GankFragment;
 import com.kuanggang.gankapp.function.gankdetail.GankPresenter;
 
+import me.drakeet.multitype.MultiTypeAdapter;
+
 /**
  * @author KG on 2017/6/9.
  */
 
-public class GankAdapter extends FragmentPagerAdapter {
+public class GankPagerAdapter extends FragmentPagerAdapter {
 
     private String[] titles = new String[]{"全部", "Android", "iOS", "前端", "休息视频",
             "福利", "拓展资源", "瞎推荐", "App"};
 
-    public GankAdapter(FragmentManager fm) {
+    public GankPagerAdapter(FragmentManager fm) {
         super(fm);
     }
 
@@ -42,7 +44,7 @@ public class GankAdapter extends FragmentPagerAdapter {
         return titles[position];
     }
 
-    public String[] getTitles(){
+    public String[] getTitles() {
         return titles;
     }
 }

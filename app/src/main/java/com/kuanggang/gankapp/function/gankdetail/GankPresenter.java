@@ -2,10 +2,12 @@ package com.kuanggang.gankapp.function.gankdetail;
 
 import android.support.annotation.NonNull;
 
+import com.kuanggang.gankapp.GankApp;
+import com.kuanggang.gankapp.R;
 import com.kuanggang.gankapp.data.DataRepository;
 import com.kuanggang.gankapp.data.RepositoryContract;
 import com.kuanggang.gankapp.model.GankCategory;
-import com.orhanobut.logger.Logger;
+import com.kuanggang.gankapp.utils.ToastUtil;
 
 /**
  * @author by KG on 2017/6/5.
@@ -28,11 +30,20 @@ public class GankPresenter implements GankContract.Presenter {
         mDataRepository.getGankListByCategory(category, page, size, new RepositoryContract.GetDataCallback<GankCategory>() {
             @Override
             public void onDataLoaded(GankCategory entity) {
-                Logger.d(entity.toString());
+                if (entity.error) {
+                    ToastUtil.show(GankApp.application, R.string.net_error);
+                    return;
+                }
+                if (entity.results == null || entity.results.size() <= 0) {
+                    ToastUtil.show(GankApp.application, R.string.no_data);
+                    return;
+                }
+                mGankView.showGankData(entity);
             }
 
             @Override
             public void onDataNotAvailable(Throwable throwable) {
+                mGankView.onRefreshOk();
             }
         });
     }

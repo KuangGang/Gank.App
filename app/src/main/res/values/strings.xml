@@ -2,4 +2,7 @@
     <string name="app_name">干货</string>
     <string name="title_part1">干</string>
     <string name="title_part2">货</string>
+
+    <string name="net_error">网络请求出错啦</string>
+    <string name="no_data">没有数据啦</string>
 </resources>

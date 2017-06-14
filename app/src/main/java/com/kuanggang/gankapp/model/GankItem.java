@@ -5,10 +5,22 @@ package com.kuanggang.gankapp.model;
  */
 
 public class GankItem {
-    private String desc;
-    private String ganhuo_id;
-    private String publishedAt;
-    private String type;
-    private String url;
-    private String who;
+    public String desc;
+    public String ganhuo_id;
+    public String publishedAt;
+    public String type;
+    public String url;
+    public String who;
+
+    @Override
+    public String toString() {
+        return "GankItem{" +
+                "desc='" + desc + '\'' +
+                ", ganhuo_id='" + ganhuo_id + '\'' +
+                ", publishedAt='" + publishedAt + '\'' +
+                ", type='" + type + '\'' +
+                ", url='" + url + '\'' +
+                ", who='" + who + '\'' +
+                '}';
+    }
 }
