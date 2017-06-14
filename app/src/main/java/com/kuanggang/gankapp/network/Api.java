@@ -1,6 +1,6 @@
 package com.kuanggang.gankapp.network;
 
-import com.kuanggang.gankapp.model.GankDay;
+import com.kuanggang.gankapp.model.GankCategory;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
@@ -12,6 +12,6 @@ import retrofit2.http.Path;
 
 public interface Api {
 
-    @GET("day/{year}/{month}/{day}")
-    Observable<GankDay> getGanDay(@Path("year") int year, @Path("month") int month, @Path("day") int day);
+    @GET("search/query/listview/category/{category}/count/{size}/page/{page}")
+    Observable<GankCategory> getGankListByCategory(@Path("category") String category, @Path("page") int page, @Path("size") int size);
 }

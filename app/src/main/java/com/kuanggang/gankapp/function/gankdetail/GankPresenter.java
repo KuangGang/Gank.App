@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.kuanggang.gankapp.data.DataRepository;
 import com.kuanggang.gankapp.data.RepositoryContract;
-import com.kuanggang.gankapp.model.GankDay;
+import com.kuanggang.gankapp.model.GankCategory;
 import com.orhanobut.logger.Logger;
 
 /**
@@ -24,16 +24,15 @@ public class GankPresenter implements GankContract.Presenter {
     }
 
     @Override
-    public void showGankDay() {
-        mDataRepository.getGankDay(new RepositoryContract.GetDataCallback<GankDay>() {
-
+    public void showGankDataByCategory(String category, int page, int size) {
+        mDataRepository.getGankListByCategory(category, page, size, new RepositoryContract.GetDataCallback<GankCategory>() {
             @Override
-            public void onDataLoaded(GankDay entity) {
+            public void onDataLoaded(GankCategory entity) {
                 Logger.d(entity.toString());
             }
 
             @Override
-            public void onDataNotAvailable(String msg) {
+            public void onDataNotAvailable(Throwable throwable) {
             }
         });
     }

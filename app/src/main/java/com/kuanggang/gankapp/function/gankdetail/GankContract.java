@@ -14,6 +14,7 @@ public interface GankContract {
     }
 
     interface Presenter extends BasePresenter {
-        void showGankDay();
+        
+        void showGankDataByCategory(String category, int page, int size);
     }
 }

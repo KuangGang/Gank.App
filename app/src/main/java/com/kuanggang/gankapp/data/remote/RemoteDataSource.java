@@ -13,15 +13,15 @@ import io.reactivex.schedulers.Schedulers;
 public class RemoteDataSource implements RepositoryContract.RemoteRepository {
 
     /**
-     * 获取干货数据
+     * 根据分类获取gank数据
      */
     @Override
-    public void getGankDay(final RepositoryContract.GetDataCallback getDataCallback) {
-        ApiService.getApi().getGanDay(2017, 6, 8)
+    public void getGankListByCategory(String category, int page, int size, RepositoryContract.GetDataCallback getDataCallback) {
+        ApiService.getApi().getGankListByCategory(category, page, size)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .filter(gankDay -> gankDay != null && gankDay.results != null)
-                .subscribe(gankDay -> getDataCallback.onDataLoaded(gankDay),
-                        throwable -> getDataCallback.onDataNotAvailable(throwable.toString()));
+                .filter(gankCategory -> gankCategory != null && gankCategory.results != null)
+                .subscribe(getDataCallback::onDataLoaded,
+                        getDataCallback::onDataNotAvailable);
     }
 }

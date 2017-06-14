@@ -25,7 +25,7 @@ public class GankAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        GankFragment gankFragment = GankFragment.newInstance(titles[position]);
+        GankFragment gankFragment = GankFragment.newInstance(titles[position].equals("全部") ? "all" : titles[position]);
         // 绑定view和presenter
         DataRepository dataRepository = new DataRepository(new RemoteDataSource(), new LocalDataSource());
         new GankPresenter(gankFragment, dataRepository);

@@ -4,7 +4,7 @@ package com.kuanggang.gankapp.data;
  * @author KG on 2017/6/8.
  */
 
-public class DataRepository implements RepositoryContract.RemoteRepository , RepositoryContract.LocalRepository{
+public class DataRepository implements RepositoryContract.RemoteRepository, RepositoryContract.LocalRepository {
 
     private RepositoryContract.RemoteRepository mRemoteDataSource;
     private RepositoryContract.LocalRepository mLocalDataSource;
@@ -16,7 +16,7 @@ public class DataRepository implements RepositoryContract.RemoteRepository , Rep
 
     /************************************网络数据**************************************/
     @Override
-    public void getGankDay(RepositoryContract.GetDataCallback getDataCallback) {
-        mRemoteDataSource.getGankDay(getDataCallback);
+    public void getGankListByCategory(String category, int page, int size, RepositoryContract.GetDataCallback getDataCallback) {
+        mRemoteDataSource.getGankListByCategory(category, page, size, getDataCallback);
     }
 }

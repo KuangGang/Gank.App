@@ -13,14 +13,14 @@ public interface RepositoryContract {
 
         void onDataLoaded(T entity);
 
-        void onDataNotAvailable(String msg);
+        void onDataNotAvailable(Throwable throwable);
     }
 
-    interface RemoteRepository extends BaseRemoteRepository{
-        void getGankDay(GetDataCallback getDataCallback);
+    interface RemoteRepository extends BaseRemoteRepository {
+        void getGankListByCategory(String category, int page, int size, GetDataCallback getDataCallback);
     }
 
-    interface LocalRepository extends BaseLocalRepository{
+    interface LocalRepository extends BaseLocalRepository {
 
     }
 }

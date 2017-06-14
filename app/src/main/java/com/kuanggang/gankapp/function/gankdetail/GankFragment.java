@@ -19,6 +19,7 @@ public class GankFragment extends Fragment implements GankContract.View {
 
     private static final String BUNDLE_KEY = "key";
 
+    private String category;
     private GankContract.Presenter mPresenter;
 
     public static GankFragment newInstance(String key) {
@@ -43,8 +44,8 @@ public class GankFragment extends Fragment implements GankContract.View {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_gank, container, false);
-        mPresenter.showGankDay();
-        Logger.d(getArguments().getString(BUNDLE_KEY));
+        category = getArguments().getString(BUNDLE_KEY);
+        mPresenter.showGankDataByCategory(category, 1, 10);
         return root;
     }
 }
