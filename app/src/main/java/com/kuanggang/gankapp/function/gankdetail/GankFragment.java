@@ -102,6 +102,7 @@ public class GankFragment extends Fragment implements GankContract.View {
 
     @Override
     public void onRefreshOk() {
+        if (swiperefreshlayout == null) return;
         swiperefreshlayout.setRefreshing(false);
     }
 
