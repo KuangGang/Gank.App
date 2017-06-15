@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.kuanggang.gankapp.R;
+import com.kuanggang.gankapp.base.BaseActivity;
 import com.kuanggang.gankapp.widget.adapter.GankPagerAdapter;
 import com.kuanggang.gankapp.widget.customview.FontTextView;
 

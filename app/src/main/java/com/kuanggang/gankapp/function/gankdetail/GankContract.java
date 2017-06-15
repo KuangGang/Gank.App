@@ -17,5 +17,6 @@ interface GankContract {
 
     interface Presenter extends BasePresenter {
         void showGankDataByCategory(String category, int page, int size);
+        void onDestory();
     }
 }

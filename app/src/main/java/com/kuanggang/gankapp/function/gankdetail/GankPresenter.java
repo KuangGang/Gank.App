@@ -47,4 +47,9 @@ public class GankPresenter implements GankContract.Presenter {
             }
         });
     }
+
+    @Override
+    public void onDestory() {
+        mDataRepository.onDestory();
+    }
 }

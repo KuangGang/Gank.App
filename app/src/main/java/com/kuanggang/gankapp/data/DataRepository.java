@@ -19,4 +19,9 @@ public class DataRepository implements RepositoryContract.RemoteRepository, Repo
     public void getGankListByCategory(String category, int page, int size, RepositoryContract.GetDataCallback getDataCallback) {
         mRemoteDataSource.getGankListByCategory(category, page, size, getDataCallback);
     }
+
+    @Override
+    public void onDestory() {
+        mRemoteDataSource.onDestory();
+    }
 }

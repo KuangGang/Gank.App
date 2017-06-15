@@ -53,20 +53,22 @@ dependencies {
     compile 'com.android.support:support-v4:25.3.1'
     compile 'com.android.support:support-v13:25.3.1'
 
-    // rxjava + retrofit + okhttp
-    compile 'io.reactivex.rxjava2:rxjava:2.0.4'
-    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    // retrofit + okhttp
     compile 'com.squareup.retrofit2:retrofit:2.2.0'
     compile 'com.squareup.retrofit2:converter-gson:2.2.0'
     compile 'com.squareup.retrofit2:adapter-rxjava2:2.2.0'
     compile 'com.squareup.okhttp3:okhttp:3.7.0'
     compile 'com.squareup.okhttp3:logging-interceptor:3.7.0'
 
-    // multitype
-    compile 'me.drakeet.multitype:multitype:3.0.1'
+    // rxjava + rxlifecycle
+    compile 'io.reactivex.rxjava2:rxjava:2.0.4'
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    compile 'com.trello.rxlifecycle2:rxlifecycle:2.1.0'
+    compile 'com.trello.rxlifecycle2:rxlifecycle-components:2.1.0'
 
     // 其他
     compile 'com.orhanobut:logger:1.15'
     compile 'com.jakewharton:butterknife:8.5.1'
     apt 'com.jakewharton:butterknife-compiler:8.5.1'
+    compile 'me.drakeet.multitype:multitype:3.0.1'
 }

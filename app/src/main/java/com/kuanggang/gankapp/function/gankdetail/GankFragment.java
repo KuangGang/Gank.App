@@ -111,4 +111,10 @@ public class GankFragment extends Fragment implements GankContract.View {
         super.onDestroyView();
         unbinder.unbind();
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mPresenter.onDestory();
+    }
 }
