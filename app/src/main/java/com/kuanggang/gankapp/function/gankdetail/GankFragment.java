@@ -16,6 +16,7 @@ import com.kuanggang.gankapp.model.GankCategory;
 import com.kuanggang.gankapp.model.GankItem;
 import com.kuanggang.gankapp.model.requestparam.GankRequestParam;
 import com.kuanggang.gankapp.widget.binder.GankTextViewBinder;
+import com.kuanggang.gankapp.widget.customview.RefreshLayout;
 
 import java.util.List;
 
@@ -34,8 +35,8 @@ public class GankFragment extends Fragment implements GankContract.View {
 
     @BindView(R.id.recyclerview)
     RecyclerView recyclerview;
-    @BindView(R.id.swiperefreshlayout)
-    SwipeRefreshLayout swiperefreshlayout;
+    @BindView(R.id.refreshlayout)
+    RefreshLayout refreshlayout;
 
     private Unbinder unbinder;
     private MultiTypeAdapter mAdapter;
@@ -86,7 +87,7 @@ public class GankFragment extends Fragment implements GankContract.View {
     }
 
     private void initListener() {
-        swiperefreshlayout.setOnRefreshListener(() -> {
+        refreshlayout.setOnRefreshListener(() -> {
             mRequestParams.setPage(1);
             loadData();
         });
@@ -102,8 +103,8 @@ public class GankFragment extends Fragment implements GankContract.View {
 
     @Override
     public void onRefreshOk() {
-        if (swiperefreshlayout == null) return;
-        swiperefreshlayout.setRefreshing(false);
+        if (refreshlayout == null) return;
+        refreshlayout.setRefreshing(false);
     }
 
     @Override

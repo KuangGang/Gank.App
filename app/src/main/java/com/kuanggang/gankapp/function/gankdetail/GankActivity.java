@@ -7,10 +7,9 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.kuanggang.gankapp.R;
 import com.kuanggang.gankapp.base.BaseActivity;
@@ -20,7 +19,7 @@ import com.kuanggang.gankapp.widget.customview.FontTextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class GankActivity extends AppCompatActivity {
+public class GankActivity extends BaseActivity {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -32,6 +31,8 @@ public class GankActivity extends AppCompatActivity {
     NavigationView navigationView;
     @BindView(R.id.drawerlayout)
     DrawerLayout drawerlayout;
+    @BindView(R.id.iv_menu)
+    ImageView ivMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +50,6 @@ public class GankActivity extends AppCompatActivity {
 
         ActionBar ab = getSupportActionBar();
         ab.setTitle("");
-        ab.setHomeAsUpIndicator(R.drawable.ic_menu);
-        ab.setDisplayHomeAsUpEnabled(true);
     }
 
     private void initTabLayoutViewPager() {
@@ -73,6 +72,7 @@ public class GankActivity extends AppCompatActivity {
     }
 
     private void initListener() {
+        ivMenu.setOnClickListener(this);
         tablayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -92,12 +92,12 @@ public class GankActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.iv_menu:
                 drawerlayout.openDrawer(GravityCompat.START);
                 break;
         }
-        return super.onOptionsItemSelected(item);
+        super.onClick(v);
     }
 }
