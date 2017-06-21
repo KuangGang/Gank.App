@@ -1,4 +1,4 @@
-package com.kuanggang.gankapp.model.requestparam;
+package com.kuanggang.gankapp.model.param;
 
 /**
  * @author KG on 2017/6/14.

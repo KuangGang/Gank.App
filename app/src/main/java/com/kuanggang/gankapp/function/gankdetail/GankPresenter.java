@@ -43,7 +43,7 @@ public class GankPresenter implements GankContract.Presenter {
 
             @Override
             public void onDataNotAvailable(Throwable throwable) {
-                mGankView.onRefreshOk();
+                mGankView.onRefreshLoadOk();
             }
         });
     }

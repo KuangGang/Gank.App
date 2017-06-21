@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,7 +13,8 @@ import android.view.ViewGroup;
 import com.kuanggang.gankapp.R;
 import com.kuanggang.gankapp.model.GankCategory;
 import com.kuanggang.gankapp.model.GankItem;
-import com.kuanggang.gankapp.model.requestparam.GankRequestParam;
+import com.kuanggang.gankapp.model.param.GankRequestParam;
+import com.kuanggang.gankapp.model.param.GankResponseParam;
 import com.kuanggang.gankapp.widget.binder.GankTextViewBinder;
 import com.kuanggang.gankapp.widget.customview.RefreshLayout;
 
@@ -41,6 +41,7 @@ public class GankFragment extends Fragment implements GankContract.View {
     private Unbinder unbinder;
     private MultiTypeAdapter mAdapter;
     private GankRequestParam mRequestParams;
+    private GankResponseParam mResponseParams;
     private GankContract.Presenter mPresenter;
 
     public static GankFragment newInstance(String key) {
@@ -60,6 +61,7 @@ public class GankFragment extends Fragment implements GankContract.View {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        mResponseParams = new GankResponseParam();
         mRequestParams = new GankRequestParam();
         mRequestParams.setPage(1);
         mRequestParams.setSize(15);
@@ -100,8 +102,8 @@ public class GankFragment extends Fragment implements GankContract.View {
 
     @Override
     public void showGankData(GankCategory gankCategory) {
-        List<GankItem> items = gankCategory.results;
-        mAdapter.setItems(items);
+        mResponseParams.addItems(mRequestParams.getPage(), gankCategory.results);
+        mAdapter.setItems(mResponseParams.getItems());
         mAdapter.notifyDataSetChanged();
         onRefreshLoadOk();
     }
