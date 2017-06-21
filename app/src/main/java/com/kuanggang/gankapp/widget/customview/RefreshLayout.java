@@ -72,8 +72,7 @@ public class RefreshLayout extends SwipeRefreshLayout {
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                if (!canLoad()) return;
-                mOnLoadListener.onLoad();//当滑动到底部的时候触动这个方法
+                loadData();//当滑动到底部的时候触动这个方法
             }
 
             @Override
@@ -126,11 +125,10 @@ public class RefreshLayout extends SwipeRefreshLayout {
 
     // 如果到了最底部, 而且是上拉操作, 那么执行onLoad方法
     private void loadData() {
-        if (mOnLoadListener != null) {
-            // 设置状态
-            setLoading(true);
-            mOnLoadListener.onLoad();
-        }
+        if (!canLoad() || mOnLoadListener == null) return;
+        // 设置状态
+        setLoading(true);
+        mOnLoadListener.onLoad();
     }
 
     public void setLoading(boolean loading) {

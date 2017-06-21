@@ -11,7 +11,7 @@ import com.kuanggang.gankapp.model.GankCategory;
 interface GankContract {
 
     interface View extends BaseView<Presenter> {
-        void onRefreshOk();
+        void onRefreshLoadOk();
         void showGankData(GankCategory gankCategory);
     }
 

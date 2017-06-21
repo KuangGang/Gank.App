@@ -62,7 +62,7 @@ public class GankFragment extends Fragment implements GankContract.View {
 
         mRequestParams = new GankRequestParam();
         mRequestParams.setPage(1);
-        mRequestParams.setSize(10);
+        mRequestParams.setSize(15);
 
         mAdapter = new MultiTypeAdapter();
         mAdapter.register(GankItem.class, new GankTextViewBinder());
@@ -91,6 +91,11 @@ public class GankFragment extends Fragment implements GankContract.View {
             mRequestParams.setPage(1);
             loadData();
         });
+        refreshlayout.setOnLoadListener(() -> {
+            int page = mRequestParams.getPage();
+            mRequestParams.setPage(++page);
+            loadData();
+        });
     }
 
     @Override
@@ -98,13 +103,14 @@ public class GankFragment extends Fragment implements GankContract.View {
         List<GankItem> items = gankCategory.results;
         mAdapter.setItems(items);
         mAdapter.notifyDataSetChanged();
-        onRefreshOk();
+        onRefreshLoadOk();
     }
 
     @Override
-    public void onRefreshOk() {
+    public void onRefreshLoadOk() {
         if (refreshlayout == null) return;
         refreshlayout.setRefreshing(false);
+        refreshlayout.setLoading(false);
     }
 
     @Override
