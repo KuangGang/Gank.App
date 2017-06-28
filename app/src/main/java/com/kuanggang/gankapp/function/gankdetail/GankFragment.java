@@ -18,6 +18,7 @@ import com.kuanggang.gankapp.model.param.GankResponseParam;
 import com.kuanggang.gankapp.widget.binder.GankTextViewBinder;
 import com.kuanggang.gankapp.widget.customview.RefreshLayout;
 
+import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;
