@@ -5,7 +5,7 @@
     android:background="@android:color/transparent"
     android:gravity="center">
 
-    <com.kuanggang.gankapp.widget.customview.FontTextView
+    <com.kuanggang.gankapp.widget.customview.TitleFontTextView
         android:id="@+id/tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

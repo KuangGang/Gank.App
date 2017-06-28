@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <com.kuanggang.gankapp.widget.customview.FontTextView
+    <com.kuanggang.gankapp.widget.customview.ContentFontTextView
         android:id="@+id/tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
         android:lineSpacingExtra="3dp"
-        android:paddingBottom="20dp"
-        android:paddingTop="20dp"
+        android:paddingBottom="26dp"
+        android:paddingTop="26dp"
         android:text="@string/app_name"
-        android:textColor="@color/colorPrimary" />
-</LinearLayout>
+        android:textColor="@color/colorPrimary"
+        android:textSize="14sp" />
+
+</RelativeLayout>

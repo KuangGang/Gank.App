@@ -10,16 +10,18 @@ import com.orhanobut.logger.Logger;
  * @author KG on 2017/6/5.
  */
 
-public class GankApp extends Application{
+public class GankApp extends Application {
 
     public static Application application;
-    public static Typeface mingTf;
+    public static Typeface titleTf;
+    public static Typeface contentTf;
 
     @Override
     public void onCreate() {
         super.onCreate();
         application = this;
-        mingTf = Typeface.createFromAsset(getAssets(), "PMingLiU.ttf");
+        titleTf = Typeface.createFromAsset(getAssets(), "PMingLiU.ttf");
+        contentTf = Typeface.createFromAsset(getAssets(), "PingFang_SC_Regular.ttf");
 
         Logger.init("GankApp").logLevel(BuildConfig.isDebug ? LogLevel.FULL : LogLevel.NONE);
     }
