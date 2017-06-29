@@ -5,4 +5,5 @@
 
     <string name="net_error">网络请求出错啦</string>
     <string name="no_data">没有数据啦</string>
+    <string name="no_author">佚名</string>
 </resources>

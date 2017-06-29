@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.kuanggang.gankapp.GankApp;
 import com.kuanggang.gankapp.R;
 import com.kuanggang.gankapp.model.GankItem;
 import com.kuanggang.gankapp.widget.customview.TitleFontTextView;
@@ -36,23 +37,16 @@ public class GankTextViewBinder extends ItemViewBinder<GankItem, GankTextViewBin
 
     @Override
     protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull GankItem item) {
-        if (TextUtils.isEmpty(item.who)) {
-            holder.tv.setText(item.desc);
-        } else {
-            int start = item.desc.length();
-            int end = start + item.who.length() + 3;
-            int color = holder.tv.getContext().getResources().getColor(R.color.md_grey_400);
-            SpannableStringBuilder ssb = new SpannableStringBuilder(item.desc + " - " + item.who);
-            ssb.setSpan(new ForegroundColorSpan(color), start, end, Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
-            ssb.setSpan(new RelativeSizeSpan(0.85f), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-            holder.tv.setText(ssb);
-        }
+        holder.tv.setText(item.desc);
+        holder.tvAuthor.setText(!TextUtils.isEmpty(item.who) ? item.who : GankApp.application.getResources().getString(R.string.no_author));
     }
 
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.tv)
         TextView tv;
+        @BindView(R.id.tv_author)
+        TextView tvAuthor;
 
         ViewHolder(View view) {
             super(view);
