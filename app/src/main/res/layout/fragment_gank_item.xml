@@ -4,15 +4,14 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:paddingBottom="25dp"
-    android:paddingTop="30dp">
+    android:paddingTop="30dp"
+    android:paddingLeft="25dp"
+    android:paddingRight="25dp">
 
     <com.kuanggang.gankapp.widget.customview.TitleFontTextView
         android:id="@+id/tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:gravity="center"
         android:lineSpacingExtra="5dp"
         android:text="@string/app_name"
         android:textColor="@color/md_black"
@@ -21,18 +20,16 @@
     <View
         android:layout_width="160dp"
         android:layout_height="0.5dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="6dp"
         android:background="@color/color_divide_line" />
 
     <com.kuanggang.gankapp.widget.customview.TitleFontTextView
         android:id="@+id/tv_author"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="3dp"
         android:gravity="center"
         android:text="@string/app_name"
-        android:textColor="@color/md_black"
-        android:textSize="12sp" />
+        android:textColor="@color/md_grey_600"
+        android:textSize="11sp" />
 </LinearLayout>
