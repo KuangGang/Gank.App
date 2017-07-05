@@ -7,6 +7,9 @@ import com.kuanggang.gankapp.R;
 import com.kuanggang.gankapp.data.DataRepository;
 import com.kuanggang.gankapp.data.RepositoryContract;
 import com.kuanggang.gankapp.model.GankCategory;
+import com.kuanggang.gankapp.model.param.GankRequestParam;
+import com.kuanggang.gankapp.model.param.GankResponseParam;
+import com.kuanggang.gankapp.model.type.PageSize;
 import com.kuanggang.gankapp.utils.ToastUtil;
 
 /**
@@ -18,34 +21,64 @@ public class GankPresenter implements GankContract.Presenter {
     private GankContract.View mGankView;
     private DataRepository mDataRepository;
 
-    public GankPresenter(@NonNull GankContract.View gankView, DataRepository dataRepository) {
+    private GankRequestParam mRequestParams;
+    private GankResponseParam mResponseParams;
+
+    public GankPresenter(@NonNull GankContract.View gankView, DataRepository dataRepository, String category) {
         mGankView = gankView;
         mDataRepository = dataRepository;
+        mRequestParams = new GankRequestParam(1, PageSize.TEN.size, category);// default
+        mResponseParams = new GankResponseParam();
 
         gankView.setPresenter(this);
     }
 
     @Override
-    public void showGankDataByCategory(String category, int page, int size) {
-        mDataRepository.getGankListByCategory(category, page, size, new RepositoryContract.GetDataCallback<GankCategory>() {
-            @Override
-            public void onDataLoaded(GankCategory entity) {
-                if (entity.error) {
-                    ToastUtil.show(GankApp.application, R.string.net_error);
-                    return;
-                }
-                if (entity.results == null || entity.results.size() <= 0) {
-                    ToastUtil.show(GankApp.application, R.string.no_data);
-                    return;
-                }
-                mGankView.showGankData(entity);
-            }
+    public void loadFirstPage() {
+        mRequestParams.setPage(1);
+        showGankDataByCategory();
+    }
 
-            @Override
-            public void onDataNotAvailable(Throwable throwable) {
-                mGankView.onRefreshLoadOk();
-            }
-        });
+    @Override
+    public void loadNextPage() {
+        int page = mRequestParams.getPage();
+        mRequestParams.setPage(++page);
+        showGankDataByCategory();
+    }
+
+    @Override
+    public void showGankDataByCategory() {
+        mDataRepository.getGankListByCategory(mRequestParams.getCategory(), mRequestParams.getPage(), mRequestParams.getSize(),
+                new RepositoryContract.GetDataCallback<GankCategory>() {
+                    @Override
+                    public void onDataLoaded(GankCategory entity) {
+                        if (entity.error) {
+                            ToastUtil.show(GankApp.application, R.string.net_error);
+                            return;
+                        }
+                        if (entity.results == null || entity.results.size() <= 0) {
+                            ToastUtil.show(GankApp.application, R.string.no_data);
+                            return;
+                        }
+                        mResponseParams.addItems(mRequestParams.getPage(), entity.results);
+                        mGankView.showGankData(mResponseParams);
+                    }
+
+                    @Override
+                    public void onDataNotAvailable(Throwable throwable) {
+                        mGankView.onRefreshLoadOk();
+                    }
+                });
+    }
+
+    @Override
+    public GankRequestParam getRequestParams() {
+        return mRequestParams;
+    }
+
+    @Override
+    public GankResponseParam getResponseParams() {
+        return mResponseParams;
     }
 
     @Override

@@ -9,6 +9,12 @@ public class GankRequestParam {
     private int size;
     private String category;
 
+    public GankRequestParam(int page, int size, String category) {
+        this.page = page;
+        this.size = size;
+        this.category = category;
+    }
+
     public int getPage() {
         return page;
     }

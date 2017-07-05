@@ -9,7 +9,7 @@
     android:paddingRight="24dp"
     android:paddingTop="35dp">
 
-    <com.kuanggang.gankapp.widget.customview.TitleFontTextView
+    <TextView
         android:id="@+id/tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,7 +24,7 @@
         android:layout_marginTop="7dp"
         android:background="@color/color_transwhite" />
 
-    <com.kuanggang.gankapp.widget.customview.TitleFontTextView
+    <TextView
         android:id="@+id/tv_author"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

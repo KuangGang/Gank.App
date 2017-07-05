@@ -10,11 +10,11 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.kuanggang.gankapp.R;
 import com.kuanggang.gankapp.base.BaseActivity;
 import com.kuanggang.gankapp.widget.adapter.GankPagerAdapter;
-import com.kuanggang.gankapp.widget.customview.TitleFontTextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -61,7 +61,7 @@ public class GankActivity extends BaseActivity {
         String[] titles = gankPagerAdapter.getTitles();
         for (int i = 0; i < titles.length; i++) {
             View tabView = View.inflate(this, R.layout.custom_tablayout_item, null);
-            TitleFontTextView tv = (TitleFontTextView) tabView.findViewById(R.id.tv);
+            TextView tv = (TextView) tabView.findViewById(R.id.tv);
             tv.setText(titles[i]);
             if (i == 0)
                 tv.setSelected(true);

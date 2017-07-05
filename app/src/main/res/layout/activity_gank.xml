@@ -34,14 +34,10 @@
                 android:layout_gravity="center"
                 android:orientation="horizontal">
 
-                <com.kuanggang.gankapp.widget.customview.TitleFontTextView
+                <TextView
                     style="@style/GankTitle"
-                    android:text="@string/title_part1" />
+                    android:text="@string/app_name" />
 
-                <com.kuanggang.gankapp.widget.customview.TitleFontTextView
-                    style="@style/GankTitle"
-                    android:layout_marginLeft="12dp"
-                    android:text="@string/title_part2" />
             </LinearLayout>
         </android.support.v7.widget.Toolbar>
 

@@ -3,7 +3,6 @@ package com.kuanggang.gankapp.function.gankdetail;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,15 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.kuanggang.gankapp.R;
-import com.kuanggang.gankapp.model.GankCategory;
+import com.kuanggang.gankapp.base.BaseFragment;
 import com.kuanggang.gankapp.model.GankItem;
-import com.kuanggang.gankapp.model.param.GankRequestParam;
 import com.kuanggang.gankapp.model.param.GankResponseParam;
 import com.kuanggang.gankapp.widget.binder.GankTextViewBinder;
 import com.kuanggang.gankapp.widget.customview.RefreshLayout;
-
-import java.util.Arrays;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -30,9 +25,7 @@ import me.drakeet.multitype.MultiTypeAdapter;
  * @author KG on 2017/6/5.
  */
 
-public class GankFragment extends Fragment implements GankContract.View {
-
-    private static final String BUNDLE_KEY = "key";
+public class GankFragment extends BaseFragment implements GankContract.View {
 
     @BindView(R.id.recyclerview)
     RecyclerView recyclerview;
@@ -41,16 +34,10 @@ public class GankFragment extends Fragment implements GankContract.View {
 
     private Unbinder unbinder;
     private MultiTypeAdapter mAdapter;
-    private GankRequestParam mRequestParams;
-    private GankResponseParam mResponseParams;
     private GankContract.Presenter mPresenter;
 
-    public static GankFragment newInstance(String key) {
-        GankFragment fragment = new GankFragment();
-        Bundle args = new Bundle();
-        args.putString(BUNDLE_KEY, key);
-        fragment.setArguments(args);
-        return fragment;
+    public static GankFragment newInstance() {
+        return new GankFragment();
     }
 
     @Override
@@ -62,11 +49,6 @@ public class GankFragment extends Fragment implements GankContract.View {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mResponseParams = new GankResponseParam();
-        mRequestParams = new GankRequestParam();
-        mRequestParams.setPage(1);
-        mRequestParams.setSize(15);
-
         mAdapter = new MultiTypeAdapter();
         mAdapter.register(GankItem.class, new GankTextViewBinder());
     }
@@ -76,34 +58,21 @@ public class GankFragment extends Fragment implements GankContract.View {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_gank, container, false);
         unbinder = ButterKnife.bind(this, root);
-        mRequestParams.setCategory(getArguments().getString(BUNDLE_KEY));
+
         recyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerview.setAdapter(mAdapter);
-
-        loadData();
+        mPresenter.loadFirstPage();
         initListener();
         return root;
     }
 
-    private void loadData() {
-        mPresenter.showGankDataByCategory(mRequestParams.getCategory(), mRequestParams.getPage(), mRequestParams.getSize());
-    }
-
     private void initListener() {
-        refreshlayout.setOnRefreshListener(() -> {
-            mRequestParams.setPage(1);
-            loadData();
-        });
-        refreshlayout.setOnLoadListener(() -> {
-            int page = mRequestParams.getPage();
-            mRequestParams.setPage(++page);
-            loadData();
-        });
+        refreshlayout.setOnRefreshListener(() -> mPresenter.loadFirstPage());
+        refreshlayout.setOnLoadListener(() -> mPresenter.loadNextPage());
     }
 
     @Override
-    public void showGankData(GankCategory gankCategory) {
-        mResponseParams.addItems(mRequestParams.getPage(), gankCategory.results);
+    public void showGankData(GankResponseParam mResponseParams) {
         mAdapter.setItems(mResponseParams.getItems());
         mAdapter.notifyDataSetChanged();
         onRefreshLoadOk();
