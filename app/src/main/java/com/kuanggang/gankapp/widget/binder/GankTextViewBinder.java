@@ -34,13 +34,10 @@ public class GankTextViewBinder extends ItemViewBinder<GankItem, GankTextViewBin
     protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull GankItem item) {
         holder.tv.setText(item.desc);
         holder.tvAuthor.setText(!TextUtils.isEmpty(item.who) ? item.who : GankApp.application.getResources().getString(R.string.no_author));
-        holder.llRoot.setBackgroundColor(GankApp.application.getResources().getColor(getPosition(holder) % 2 == 0 ? R.color.md_grey_800 : R.color.md_grey_900));
     }
 
 
     static class ViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.ll_root)
-        LinearLayout llRoot;
         @BindView(R.id.tv)
         TextView tv;
         @BindView(R.id.tv_author)
