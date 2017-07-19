@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@mipmap/icon_category_nol" android:state_selected="false" />
+    <item android:drawable="@mipmap/icon_category_sel" android:state_selected="true" />
+
+</selector>

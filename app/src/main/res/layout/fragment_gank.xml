@@ -1,13 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.kuanggang.gankapp.widget.customview.RefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/refreshlayout"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorPrimary">
+    android:layout_height="match_parent">
+
+    <com.kuanggang.gankapp.widget.customview.RefreshLayout
+        android:id="@+id/refreshlayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </com.kuanggang.gankapp.widget.customview.RefreshLayout>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerview"
+        android:id="@+id/rv_category"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"/>
 
-</com.kuanggang.gankapp.widget.customview.RefreshLayout>
+</RelativeLayout>

@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.kuanggang.gankapp.Constants;
 import com.kuanggang.gankapp.R;
 import com.kuanggang.gankapp.base.BaseFragment;
 import com.kuanggang.gankapp.model.GankItem;
@@ -27,13 +28,15 @@ import me.drakeet.multitype.MultiTypeAdapter;
 
 public class GankFragment extends BaseFragment implements GankContract.View {
 
-    @BindView(R.id.recyclerview)
-    RecyclerView recyclerview;
     @BindView(R.id.refreshlayout)
     RefreshLayout refreshlayout;
+    @BindView(R.id.rv_content)
+    RecyclerView rvContent;
+    @BindView(R.id.rv_category)
+    RecyclerView rvCategory;
 
     private Unbinder unbinder;
-    private MultiTypeAdapter mAdapter;
+    private MultiTypeAdapter mContentAdapter;
     private GankContract.Presenter mPresenter;
 
     public static GankFragment newInstance() {
@@ -46,11 +49,16 @@ public class GankFragment extends BaseFragment implements GankContract.View {
     }
 
     @Override
+    public void showCategoryOrContent(boolean isCategory) {
+        refreshlayout.setVisibility(isCategory ? View.GONE : View.VISIBLE);
+        rvCategory.setVisibility(isCategory ? View.VISIBLE : View.GONE);
+    }
+
+    @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        mAdapter = new MultiTypeAdapter();
-        mAdapter.register(GankItem.class, new GankTextViewBinder());
+        mContentAdapter = new MultiTypeAdapter();
+        mContentAdapter.register(GankItem.class, new GankTextViewBinder());
     }
 
     @Nullable
@@ -59,8 +67,8 @@ public class GankFragment extends BaseFragment implements GankContract.View {
         View root = inflater.inflate(R.layout.fragment_gank, container, false);
         unbinder = ButterKnife.bind(this, root);
 
-        recyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerview.setAdapter(mAdapter);
+        rvContent.setLayoutManager(new LinearLayoutManager(getActivity()));
+        rvContent.setAdapter(mContentAdapter);
         mPresenter.loadFirstPage();
         initListener();
         return root;
@@ -73,8 +81,8 @@ public class GankFragment extends BaseFragment implements GankContract.View {
 
     @Override
     public void showGankData(GankResponseParam mResponseParams) {
-        mAdapter.setItems(mResponseParams.getItems());
-        mAdapter.notifyDataSetChanged();
+        mContentAdapter.setItems(mResponseParams.getItems());
+        mContentAdapter.notifyDataSetChanged();
         onRefreshLoadOk();
     }
 

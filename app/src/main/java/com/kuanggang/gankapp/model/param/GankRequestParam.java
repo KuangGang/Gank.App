@@ -8,11 +8,12 @@ public class GankRequestParam {
     private int page;
     private int size;
     private String category;
+    private boolean isCategory;
 
-    public GankRequestParam(int page, int size, String category) {
+    public GankRequestParam(int page, int size, boolean isCategory) {
         this.page = page;
         this.size = size;
-        this.category = category;
+        this.isCategory = isCategory;
     }
 
     public int getPage() {
@@ -37,5 +38,13 @@ public class GankRequestParam {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public boolean isCategory() {
+        return isCategory;
+    }
+
+    public void setCategory(boolean category) {
+        isCategory = category;
     }
 }

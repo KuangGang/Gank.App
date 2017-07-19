@@ -24,23 +24,26 @@ public class GankPresenter implements GankContract.Presenter {
     private GankRequestParam mRequestParams;
     private GankResponseParam mResponseParams;
 
-    public GankPresenter(@NonNull GankContract.View gankView, DataRepository dataRepository, String category) {
+    public GankPresenter(@NonNull GankContract.View gankView, DataRepository dataRepository, boolean isCategory) {
         mGankView = gankView;
         mDataRepository = dataRepository;
-        mRequestParams = new GankRequestParam(1, PageSize.TEN.size, category);// default
+        mRequestParams = new GankRequestParam(1, PageSize.TEN.size, isCategory);// default
         mResponseParams = new GankResponseParam();
 
-        gankView.setPresenter(this);
+        mGankView.setPresenter(this);
+        mGankView.showCategoryOrContent(isCategory);
     }
 
     @Override
     public void loadFirstPage() {
+        if (mRequestParams.isCategory()) return;
         mRequestParams.setPage(1);
         showGankDataByCategory();
     }
 
     @Override
     public void loadNextPage() {
+        if (mRequestParams.isCategory()) return;
         int page = mRequestParams.getPage();
         mRequestParams.setPage(++page);
         showGankDataByCategory();
