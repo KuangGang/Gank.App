@@ -35,7 +35,10 @@ public class GankPresenter implements GankContract.Presenter {
 
     @Override
     public void loadFirstPage() {
-        if (mRequestParams.isCategory()) return;
+        if (mRequestParams.isCategory() || GankFragment.NOW_CATEGORY.equals(mRequestParams.getCategory()))
+            return;
+        mGankView.showRefreshAnim();
+        mRequestParams.setCategory(GankFragment.NOW_CATEGORY);
         mRequestParams.setPage(1);
         showGankDataByCategory();
     }

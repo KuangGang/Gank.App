@@ -3,9 +3,11 @@ package com.kuanggang.gankapp.function.gankdetail;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +19,7 @@ import com.kuanggang.gankapp.base.BaseFragment;
 import com.kuanggang.gankapp.model.GankItem;
 import com.kuanggang.gankapp.model.param.GankResponseParam;
 import com.kuanggang.gankapp.utils.AppUtil;
+import com.kuanggang.gankapp.utils.TextUtil;
 import com.kuanggang.gankapp.widget.adapter.GankCategoryAdapter;
 import com.kuanggang.gankapp.widget.binder.GankTextViewBinder;
 import com.kuanggang.gankapp.widget.customview.RefreshLayout;
@@ -31,6 +34,11 @@ import me.drakeet.multitype.MultiTypeAdapter;
  */
 
 public class GankFragment extends BaseFragment implements GankContract.View {
+
+    /**
+     * 当前选择的分类，默认为all
+     */
+    public static String NOW_CATEGORY = "all";
 
     @BindView(R.id.refreshlayout)
     RefreshLayout refreshlayout;
@@ -61,7 +69,7 @@ public class GankFragment extends BaseFragment implements GankContract.View {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mCategoryAdapter = new GankCategoryAdapter();
+        mCategoryAdapter = new GankCategoryAdapter((GankActivity) getActivity());
         mContentAdapter = new MultiTypeAdapter();
         mContentAdapter.register(GankItem.class, new GankTextViewBinder());
     }
@@ -79,23 +87,25 @@ public class GankFragment extends BaseFragment implements GankContract.View {
 
     private void init() {
         tvVersion.setText(getString(R.string.version, AppUtil.getVersionName()));
-        // 设置分类适配器
+
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 3);
         gridLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         rvCategory.setLayoutManager(gridLayoutManager);
         rvCategory.setAdapter(mCategoryAdapter);
-        // 设置内容适配器
+
         rvContent.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvContent.setAdapter(mContentAdapter);
+
         // 控制显示内容
         refreshlayout.setVisibility(mPresenter.getRequestParams().isCategory() ? View.GONE : View.VISIBLE);
         rlCategory.setVisibility(mPresenter.getRequestParams().isCategory() ? View.VISIBLE : View.GONE);
-
-        mPresenter.loadFirstPage();
     }
 
     private void initListener() {
-        refreshlayout.setOnRefreshListener(() -> mPresenter.loadFirstPage());
+        refreshlayout.setOnRefreshListener(() -> {
+            mPresenter.getRequestParams().setCategory("");
+            mPresenter.loadFirstPage();
+        });
         refreshlayout.setOnLoadListener(() -> mPresenter.loadNextPage());
     }
 
@@ -111,6 +121,19 @@ public class GankFragment extends BaseFragment implements GankContract.View {
         if (refreshlayout == null) return;
         refreshlayout.setRefreshing(false);
         refreshlayout.setLoading(false);
+    }
+
+    @Override
+    public void showRefreshAnim() {
+        if (refreshlayout == null) return;
+        refreshlayout.setRefreshing(true);
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser && mPresenter != null)
+            mPresenter.loadFirstPage();
     }
 
     @Override

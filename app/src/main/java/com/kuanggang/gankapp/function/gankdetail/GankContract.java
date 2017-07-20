@@ -16,6 +16,8 @@ interface GankContract {
         void onRefreshLoadOk();
 
         void showGankData(GankResponseParam mResponseParam);
+
+        void showRefreshAnim();
     }
 
     interface Presenter extends BasePresenter {

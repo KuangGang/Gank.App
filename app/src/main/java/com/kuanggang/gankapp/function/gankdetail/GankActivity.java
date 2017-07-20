@@ -71,8 +71,14 @@ public class GankActivity extends BaseActivity {
     }
 
     private void setMenuSelected(boolean isCategory) {
+        if (ivCategory == null || ivContent == null) return;
         ivCategory.setSelected(isCategory);
         ivContent.setSelected(!isCategory);
+    }
+
+    public void showContent() {
+        if (viewpager == null) return;
+        viewpager.setCurrentItem(1);
     }
 
 
