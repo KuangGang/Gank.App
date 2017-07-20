@@ -31,7 +31,6 @@ public class GankPresenter implements GankContract.Presenter {
         mResponseParams = new GankResponseParam();
 
         mGankView.setPresenter(this);
-        mGankView.showCategoryOrContent(isCategory);
     }
 
     @Override

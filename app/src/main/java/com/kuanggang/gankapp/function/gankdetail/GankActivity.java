@@ -41,6 +41,7 @@ public class GankActivity extends BaseActivity {
 
         ActionBar ab = getSupportActionBar();
         ab.setTitle("");
+        setMenuSelected(true);
     }
 
     private void initTabLayoutViewPager() {
@@ -51,6 +52,7 @@ public class GankActivity extends BaseActivity {
     private void initListener() {
         ivCategory.setOnClickListener(this);
         ivContent.setOnClickListener(this);
+        viewpager.addOnPageChangeListener(new GankPagerChangeListener());
     }
 
     @Override
@@ -58,11 +60,37 @@ public class GankActivity extends BaseActivity {
         switch (v.getId()) {
             case R.id.iv_category:
                 viewpager.setCurrentItem(0);
+                setMenuSelected(true);
                 break;
             case R.id.iv_content:
                 viewpager.setCurrentItem(1);
+                setMenuSelected(false);
                 break;
         }
         super.onClick(v);
+    }
+
+    private void setMenuSelected(boolean isCategory) {
+        ivCategory.setSelected(isCategory);
+        ivContent.setSelected(!isCategory);
+    }
+
+
+    private class GankPagerChangeListener implements ViewPager.OnPageChangeListener {
+
+        @Override
+        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+        }
+
+        @Override
+        public void onPageSelected(int position) {
+            setMenuSelected(position == 0);
+        }
+
+        @Override
+        public void onPageScrollStateChanged(int state) {
+
+        }
     }
 }

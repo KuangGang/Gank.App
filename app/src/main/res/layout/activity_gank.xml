@@ -6,27 +6,31 @@
     android:background="@color/colorPrimary"
     android:orientation="vertical">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:elevation="2dp"
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/colorPrimary"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+        android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/iv_category"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/icon_category_selector"/>
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="@color/colorPrimary"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
-        <ImageView
-            android:id="@+id/iv_content"
-            android:layout_marginLeft="40dp"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/icon_content_selector"/>
-    </android.support.v7.widget.Toolbar>
+            <ImageView
+                android:id="@+id/iv_category"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/icon_category_selector" />
+
+            <ImageView
+                android:id="@+id/iv_content"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginLeft="45dp"
+                android:src="@drawable/icon_content_selector" />
+        </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager"
