@@ -12,6 +12,6 @@ import retrofit2.http.Path;
 
 public interface Api {
 
-    @GET("search/query/listview/category/{category}/count/{size}/page/{page}")
+    @GET("data/{category}/{size}/{page}")
     Observable<GankCategory> getGankListByCategory(@Path("category") String category, @Path("page") int page, @Path("size") int size);
 }

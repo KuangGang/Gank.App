@@ -3,23 +3,18 @@ package com.kuanggang.gankapp.function.gankdetail;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.kuanggang.gankapp.R;
 import com.kuanggang.gankapp.base.BaseFragment;
 import com.kuanggang.gankapp.model.GankItem;
 import com.kuanggang.gankapp.model.param.GankResponseParam;
-import com.kuanggang.gankapp.utils.AppUtil;
-import com.kuanggang.gankapp.utils.TextUtil;
 import com.kuanggang.gankapp.widget.adapter.GankCategoryAdapter;
 import com.kuanggang.gankapp.widget.binder.GankTextViewBinder;
 import com.kuanggang.gankapp.widget.customview.RefreshLayout;
@@ -46,8 +41,6 @@ public class GankFragment extends BaseFragment implements GankContract.View {
     RecyclerView rvContent;
     @BindView(R.id.rv_category)
     RecyclerView rvCategory;
-    @BindView(R.id.tv_version)
-    TextView tvVersion;
     @BindView(R.id.rl_category)
     RelativeLayout rlCategory;
 
@@ -86,8 +79,6 @@ public class GankFragment extends BaseFragment implements GankContract.View {
     }
 
     private void init() {
-        tvVersion.setText(getString(R.string.version, AppUtil.getVersionName()));
-
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 3);
         gridLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         rvCategory.setLayoutManager(gridLayoutManager);

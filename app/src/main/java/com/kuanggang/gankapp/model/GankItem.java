@@ -5,9 +5,11 @@ package com.kuanggang.gankapp.model;
  */
 
 public class GankItem {
+    public String _id;
     public String desc;
-    public String ganhuo_id;
+    public String createdAt;
     public String publishedAt;
+    public String source;
     public String type;
     public String url;
     public String who;
@@ -15,9 +17,11 @@ public class GankItem {
     @Override
     public String toString() {
         return "GankItem{" +
-                "desc='" + desc + '\'' +
-                ", ganhuo_id='" + ganhuo_id + '\'' +
+                "_id='" + _id + '\'' +
+                ", desc='" + desc + '\'' +
+                ", createdAt='" + createdAt + '\'' +
                 ", publishedAt='" + publishedAt + '\'' +
+                ", source='" + source + '\'' +
                 ", type='" + type + '\'' +
                 ", url='" + url + '\'' +
                 ", who='" + who + '\'' +
