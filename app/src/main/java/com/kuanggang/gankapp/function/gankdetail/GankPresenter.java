@@ -9,7 +9,7 @@ import com.kuanggang.gankapp.data.RepositoryContract;
 import com.kuanggang.gankapp.model.GankCategory;
 import com.kuanggang.gankapp.model.param.GankRequestParam;
 import com.kuanggang.gankapp.model.param.GankResponseParam;
-import com.kuanggang.gankapp.model.type.PageSize;
+import com.kuanggang.gankapp.model.type.PageSizeEnum;
 import com.kuanggang.gankapp.utils.ToastUtil;
 
 /**
@@ -27,7 +27,7 @@ public class GankPresenter implements GankContract.Presenter {
     public GankPresenter(@NonNull GankContract.View gankView, DataRepository dataRepository, boolean isCategory) {
         mGankView = gankView;
         mDataRepository = dataRepository;
-        mRequestParams = new GankRequestParam(1, PageSize.TEN.size, isCategory);// default
+        mRequestParams = new GankRequestParam(1, PageSizeEnum.TEN.size, isCategory);// default
         mResponseParams = new GankResponseParam();
 
         mGankView.setPresenter(this);

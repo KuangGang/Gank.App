@@ -5,4 +5,5 @@
     <string name="no_data">没有数据啦</string>
     <string name="no_author">佚名</string>
     <string name="version">干货集中营</string>
+    <string name="author">▶ %s</string>
 </resources>

@@ -1,5 +1,7 @@
 package com.kuanggang.gankapp.model;
 
+import java.util.List;
+
 /**
  * @author KG on 2017/6/14.
  */
@@ -13,6 +15,7 @@ public class GankItem {
     public String type;
     public String url;
     public String who;
+    public List<String> images;
 
     @Override
     public String toString() {
@@ -25,6 +28,7 @@ public class GankItem {
                 ", type='" + type + '\'' +
                 ", url='" + url + '\'' +
                 ", who='" + who + '\'' +
+                ", images=" + images +
                 '}';
     }
 }

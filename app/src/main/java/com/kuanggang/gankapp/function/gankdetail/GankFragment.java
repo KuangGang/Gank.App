@@ -16,7 +16,7 @@ import com.kuanggang.gankapp.base.BaseFragment;
 import com.kuanggang.gankapp.model.GankItem;
 import com.kuanggang.gankapp.model.param.GankResponseParam;
 import com.kuanggang.gankapp.widget.adapter.GankCategoryAdapter;
-import com.kuanggang.gankapp.widget.binder.GankTextViewBinder;
+import com.kuanggang.gankapp.widget.binder.GankContentBinder;
 import com.kuanggang.gankapp.widget.customview.RefreshLayout;
 
 import butterknife.BindView;
@@ -64,7 +64,7 @@ public class GankFragment extends BaseFragment implements GankContract.View {
 
         mCategoryAdapter = new GankCategoryAdapter((GankActivity) getActivity());
         mContentAdapter = new MultiTypeAdapter();
-        mContentAdapter.register(GankItem.class, new GankTextViewBinder());
+        mContentAdapter.register(GankItem.class, new GankContentBinder());
     }
 
     @Nullable
