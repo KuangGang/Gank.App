@@ -16,8 +16,8 @@ public enum CategoryEnum {
     EXPAND("拓展资源", R.mipmap.icon_expand),
     RECOMMEND("瞎推荐", R.mipmap.icon_recommend),
     APP("App", R.mipmap.icon_app);
-    public String category;
-    public int drawableId;
+    public String category = "all";
+    public int drawableId = R.mipmap.icon_all;
 
     CategoryEnum(String category, int drawableId) {
         this.category = category;
