@@ -11,6 +11,11 @@ import android.widget.TextView;
 import com.kuanggang.gankapp.R;
 import com.kuanggang.gankapp.model.GankTitle;
 import com.kuanggang.gankapp.model.type.CategoryEnum;
+import com.kuanggang.gankapp.utils.DateUtil;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -34,7 +39,17 @@ public class GankTitleBinder extends ItemViewBinder<GankTitle, GankTitleBinder.V
         CategoryEnum to = CategoryEnum.to(item.type);
         holder.iv.setImageResource(to.drawableId);
         holder.tvCategory.setText(item.type);
-        holder.tvTime.setText(item.publishedAt);
+
+        String smallDate = item.publishedAt.split("T")[0];
+        String bigDate = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+        try {
+            holder.tvTime.setVisibility(View.VISIBLE);
+            int diff = DateUtil.getStrDateDiff(smallDate, bigDate);
+            holder.tvTime.setText(diff > 0 ? diff + "天前" : "今日更新");
+        } catch (ParseException e) {
+            holder.tvTime.setVisibility(View.GONE);
+            e.printStackTrace();
+        }
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {

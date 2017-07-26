@@ -7,10 +7,14 @@ import com.kuanggang.gankapp.R;
 import com.kuanggang.gankapp.data.DataRepository;
 import com.kuanggang.gankapp.data.RepositoryContract;
 import com.kuanggang.gankapp.model.GankCategory;
+import com.kuanggang.gankapp.model.GankItem;
 import com.kuanggang.gankapp.model.param.GankRequestParam;
 import com.kuanggang.gankapp.model.param.GankResponseParam;
 import com.kuanggang.gankapp.model.type.PageSizeEnum;
 import com.kuanggang.gankapp.utils.ToastUtil;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author by KG on 2017/6/5.
@@ -65,7 +69,7 @@ public class GankPresenter implements GankContract.Presenter {
                             ToastUtil.show(GankApp.application, R.string.no_data);
                             return;
                         }
-                        mResponseParams.addItems(mRequestParams.getPage(), entity.results);
+                        mResponseParams.addItems(mRequestParams.getPage(), handleResults(entity));
                         mGankView.showGankData(mResponseParams);
                     }
 
@@ -74,6 +78,15 @@ public class GankPresenter implements GankContract.Presenter {
                         mGankView.onRefreshLoadOk();
                     }
                 });
+    }
+
+    private List<Object> handleResults(GankCategory entity) {
+        List<Object> results = new ArrayList<>();
+        List<GankItem> initResults = entity.results;
+        if (initResults == null || initResults.size() <= 0)
+            return results;
+
+        return results;
     }
 
     @Override
