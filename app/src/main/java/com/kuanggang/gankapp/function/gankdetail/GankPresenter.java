@@ -8,12 +8,16 @@ import com.kuanggang.gankapp.data.DataRepository;
 import com.kuanggang.gankapp.data.RepositoryContract;
 import com.kuanggang.gankapp.model.GankCategory;
 import com.kuanggang.gankapp.model.GankItem;
+import com.kuanggang.gankapp.model.GankTimeDivide;
+import com.kuanggang.gankapp.model.GankTitle;
 import com.kuanggang.gankapp.model.param.GankRequestParam;
 import com.kuanggang.gankapp.model.param.GankResponseParam;
 import com.kuanggang.gankapp.model.type.PageSizeEnum;
 import com.kuanggang.gankapp.utils.ToastUtil;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -86,6 +90,22 @@ public class GankPresenter implements GankContract.Presenter {
         if (initResults == null || initResults.size() <= 0)
             return results;
 
+        for (int i = 0; i < initResults.size(); i++) {
+            GankItem item = initResults.get(i);
+            GankItem lastItem = initResults.get(i - 1);
+            String nowDate = i > 0 ? item.publishedAt.split("T")[0] : new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+            String lastDate = i > 0 ? lastItem.publishedAt.split("T")[0] : item.publishedAt.split("T")[0];
+            if (!nowDate.equals(lastDate)) {
+                results.add(new GankTimeDivide(nowDate));
+                results.add(new GankTitle(item.createdAt, item.publishedAt, item.type, item.url));
+            } else {
+                if (i > 0 && !lastItem.type.equals(item.type))
+                    results.add(new GankTitle(item.createdAt, item.publishedAt, item.type, item.url));
+                else if (i <= 0)
+                    results.add(new GankTitle(item.createdAt, item.publishedAt, item.type, item.url));
+            }
+            results.add(item);
+        }
         return results;
     }
 

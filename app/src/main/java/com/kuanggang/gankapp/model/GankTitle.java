@@ -10,6 +10,13 @@ public class GankTitle {
     public String type;
     public String url;
 
+    public GankTitle(String createdAt, String publishedAt, String type, String url) {
+        this.createdAt = createdAt;
+        this.publishedAt = publishedAt;
+        this.type = type;
+        this.url = url;
+    }
+
     @Override
     public String toString() {
         return "GankTitle{" +

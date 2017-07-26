@@ -7,6 +7,10 @@ package com.kuanggang.gankapp.model;
 public class GankTimeDivide {
     public String publishedAt;
 
+    public GankTimeDivide(String publishedAt) {
+        this.publishedAt = publishedAt;
+    }
+
     @Override
     public String toString() {
         return "GankTimeDivide{" +
