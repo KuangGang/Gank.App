@@ -1,4 +1,4 @@
-package com.kuanggang.gankapp.model;
+package com.kuanggang.gankapp.model.multitype;
 
 /**
  * @author KG on 2017/7/24.

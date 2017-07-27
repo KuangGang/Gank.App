@@ -29,8 +29,8 @@ public class GlideUtils {
     public GlideUtils() {
         mOptions = new RequestOptions()
                 .centerCrop()
-                .placeholder(R.mipmap.ic_launcher)
-                .error(R.mipmap.ic_launcher)
+                .placeholder(R.drawable.icon_white_back)
+                .error(R.drawable.icon_white_back)
                 .priority(Priority.HIGH)
                 .diskCacheStrategy(DiskCacheStrategy.ALL);
     }

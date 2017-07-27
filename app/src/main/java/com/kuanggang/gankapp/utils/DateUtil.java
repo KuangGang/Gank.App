@@ -41,6 +41,18 @@ public class DateUtil {
         return dateStr;
     }
 
+    // 把字符串转为日期
+    public static String convertString2String(String dateStr, String format) {
+        DateFormat df = new SimpleDateFormat(GANK_DATE_FORMAT);
+        DateFormat targetDf = new SimpleDateFormat(format);
+        try {
+            return targetDf.format(df.parse(dateStr));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return dateStr;
+    }
+
     /**
      * 日期相差天数(字符串的)
      */

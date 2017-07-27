@@ -5,4 +5,11 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
+    <style name="divideLine">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1.5px</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:background">@color/colorLine</item>
+    </style>
 </resources>

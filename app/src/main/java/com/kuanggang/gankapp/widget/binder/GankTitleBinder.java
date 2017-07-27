@@ -9,12 +9,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.kuanggang.gankapp.R;
-import com.kuanggang.gankapp.model.GankTitle;
+import com.kuanggang.gankapp.model.multitype.GankTitle;
 import com.kuanggang.gankapp.model.type.CategoryEnum;
 import com.kuanggang.gankapp.utils.DateUtil;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import butterknife.BindView;
@@ -41,11 +40,11 @@ public class GankTitleBinder extends ItemViewBinder<GankTitle, GankTitleBinder.V
         holder.tvCategory.setText(item.type);
 
         String smallDate = item.publishedAt.split("T")[0];
-        String bigDate = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+        String bigDate = DateUtil.convertDate2String(new Date());
         try {
             holder.tvTime.setVisibility(View.VISIBLE);
             int diff = DateUtil.getStrDateDiff(smallDate, bigDate);
-            holder.tvTime.setText(diff > 0 ? diff + "天前" : "今日更新");
+            holder.tvTime.setText(diff > 0 ? diff + " 天前" : "今日更新");
         } catch (ParseException e) {
             holder.tvTime.setVisibility(View.GONE);
             e.printStackTrace();

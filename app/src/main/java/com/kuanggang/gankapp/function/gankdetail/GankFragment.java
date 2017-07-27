@@ -14,13 +14,15 @@ import android.widget.RelativeLayout;
 import com.kuanggang.gankapp.R;
 import com.kuanggang.gankapp.base.BaseFragment;
 import com.kuanggang.gankapp.model.GankItem;
-import com.kuanggang.gankapp.model.GankTimeDivide;
-import com.kuanggang.gankapp.model.GankTitle;
+import com.kuanggang.gankapp.model.multitype.GankTimeDivide;
+import com.kuanggang.gankapp.model.multitype.GankTitle;
+import com.kuanggang.gankapp.model.multitype.GankWealImage;
 import com.kuanggang.gankapp.model.param.GankResponseParam;
 import com.kuanggang.gankapp.widget.adapter.GankCategoryAdapter;
 import com.kuanggang.gankapp.widget.binder.GankContentBinder;
 import com.kuanggang.gankapp.widget.binder.GankTimeDivideBinder;
 import com.kuanggang.gankapp.widget.binder.GankTitleBinder;
+import com.kuanggang.gankapp.widget.binder.GankWealImageBinder;
 import com.kuanggang.gankapp.widget.customview.RefreshLayout;
 
 import butterknife.BindView;
@@ -71,6 +73,7 @@ public class GankFragment extends BaseFragment implements GankContract.View {
         mContentAdapter.register(GankTitle.class, new GankTitleBinder());
         mContentAdapter.register(GankItem.class, new GankContentBinder());
         mContentAdapter.register(GankTimeDivide.class, new GankTimeDivideBinder());
+        mContentAdapter.register(GankWealImage.class, new GankWealImageBinder());
     }
 
     @Nullable
@@ -108,7 +111,7 @@ public class GankFragment extends BaseFragment implements GankContract.View {
 
     @Override
     public void showGankData(GankResponseParam mResponseParams) {
-        mContentAdapter.setItems(mResponseParams.getItems());
+        mContentAdapter.setItems(mResponseParams.getHandleItems());
         mContentAdapter.notifyDataSetChanged();
         onRefreshLoadOk();
     }

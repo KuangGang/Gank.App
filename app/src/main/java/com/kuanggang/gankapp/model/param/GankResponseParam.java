@@ -1,5 +1,7 @@
 package com.kuanggang.gankapp.model.param;
 
+import com.kuanggang.gankapp.model.GankItem;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,18 +11,31 @@ import java.util.List;
 
 public class GankResponseParam {
     /**
-     * 分类数据
+     * 初始数据
      */
-    private List<Object> items = new ArrayList<>();
+    private List<GankItem> initItems = new ArrayList<>();
 
-    public void addItems(int page, List<Object> items) {
+    /**
+     * 处理后的数据
+     */
+    private List<Object> handleItems = new ArrayList<>();
+
+    public void setInitItems(int page, List<GankItem> items) {
         if (page == 1)
-            this.items = items;
+            this.initItems = items;
         else
-            this.items.addAll(items);
+            this.initItems.addAll(items);
     }
 
-    public List<Object> getItems() {
-        return items;
+    public List<GankItem> getInitItems() {
+        return initItems;
+    }
+
+    public List<Object> getHandleItems() {
+        return handleItems;
+    }
+
+    public void setHandleItems(List<Object> handleItems) {
+        this.handleItems = handleItems;
     }
 }
