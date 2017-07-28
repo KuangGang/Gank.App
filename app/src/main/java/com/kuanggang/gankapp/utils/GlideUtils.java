@@ -7,6 +7,7 @@ import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.Target;
 import com.kuanggang.gankapp.GankApp;
 import com.kuanggang.gankapp.R;
 
@@ -43,6 +44,24 @@ public class GlideUtils {
                 .transition(new DrawableTransitionOptions().crossFade(500))
                 .into(iv);
     }
+
+    // 加载自适应高度的ImageView
+    public void loadAutoHeightNetImage(String url, ImageView iv) {
+        RequestOptions options = new RequestOptions()
+                .centerCrop()
+                .placeholder(R.drawable.icon_white_back)
+                .error(R.drawable.icon_white_back)
+                .priority(Priority.HIGH)
+                .override(DensityUtil.getScreenWidth(GankApp.application), Target.SIZE_ORIGINAL)
+                .diskCacheStrategy(DiskCacheStrategy.ALL);
+
+        Glide.with(GankApp.application)
+                .load(url)
+                .apply(options)
+                .transition(new DrawableTransitionOptions().crossFade(500))
+                .into(iv);
+    }
+
 
     // 加载drawable图片
     public void loadResImage() {

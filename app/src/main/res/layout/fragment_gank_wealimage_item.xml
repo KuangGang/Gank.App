@@ -3,12 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <com.kuanggang.gankapp.widget.customview.AutoScaleImageView
+    <ImageView
         android:id="@+id/iv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scaleType="fitXY"
-        android:src="@drawable/icon_white_back"/>
-
+        android:layout_height="wrap_content" />
 
 </RelativeLayout>

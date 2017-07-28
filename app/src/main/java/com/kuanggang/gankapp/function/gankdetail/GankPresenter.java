@@ -79,6 +79,8 @@ public class GankPresenter implements GankContract.Presenter {
                         mResponseParams.setInitItems(mRequestParams.getPage(), entity.results);
                         mResponseParams.setHandleItems(handleResults(mResponseParams.getInitItems()));
                         mGankView.showGankData(mResponseParams);
+                        if (mRequestParams.getPage() == 1)
+                            mGankView.scrollToHead();
                     }
 
                     @Override

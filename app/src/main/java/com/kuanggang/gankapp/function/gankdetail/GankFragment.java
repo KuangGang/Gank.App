@@ -99,6 +99,8 @@ public class GankFragment extends BaseFragment implements GankContract.View {
         // 控制显示内容
         refreshlayout.setVisibility(mPresenter.getRequestParams().isCategory() ? View.GONE : View.VISIBLE);
         rlCategory.setVisibility(mPresenter.getRequestParams().isCategory() ? View.VISIBLE : View.GONE);
+
+        mPresenter.loadFirstPage();
     }
 
     private void initListener() {
@@ -130,10 +132,17 @@ public class GankFragment extends BaseFragment implements GankContract.View {
     }
 
     @Override
+    public void scrollToHead() {
+        if (rvContent == null) return;
+        rvContent.scrollToPosition(0);
+    }
+
+    @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        if (isVisibleToUser && mPresenter != null)
+        if (isVisibleToUser && mPresenter != null) {
             mPresenter.loadFirstPage();
+        }
     }
 
     @Override

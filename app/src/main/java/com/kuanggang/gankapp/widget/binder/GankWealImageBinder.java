@@ -2,17 +2,16 @@ package com.kuanggang.gankapp.widget.binder;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+import com.kuanggang.gankapp.GankApp;
 import com.kuanggang.gankapp.R;
-import com.kuanggang.gankapp.model.multitype.GankTimeDivide;
 import com.kuanggang.gankapp.model.multitype.GankWealImage;
 import com.kuanggang.gankapp.utils.GlideUtils;
-import com.kuanggang.gankapp.widget.customview.AutoScaleImageView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,12 +32,13 @@ public class GankWealImageBinder extends ItemViewBinder<GankWealImage, GankWealI
 
     @Override
     protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull GankWealImage item) {
-        GlideUtils.newInstance().loadNetImage(item.imageUrl, holder.iv);
+        Glide.with(GankApp.application);
+        GlideUtils.newInstance().loadAutoHeightNetImage(item.imageUrl, holder.iv);
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.iv)
-        AutoScaleImageView iv;
+        ImageView iv;
 
         ViewHolder(View view) {
             super(view);

@@ -18,6 +18,8 @@ interface GankContract {
         void showGankData(GankResponseParam mResponseParam);
 
         void showRefreshAnim();
+
+        void scrollToHead();
     }
 
     interface Presenter extends BasePresenter {
