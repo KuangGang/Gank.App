@@ -1,5 +1,7 @@
 package com.kuanggang.gankapp.widget.binder;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -10,8 +12,10 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.kuanggang.gankapp.Constants;
 import com.kuanggang.gankapp.GankApp;
 import com.kuanggang.gankapp.R;
+import com.kuanggang.gankapp.function.browser.BrowserActivity;
 import com.kuanggang.gankapp.model.GankItem;
 import com.kuanggang.gankapp.utils.DensityUtil;
 import com.kuanggang.gankapp.utils.GlideUtils;
@@ -52,6 +56,13 @@ public class GankContentBinder extends ItemViewBinder<GankItem, GankContentBinde
         holder.tvTitle.setText(item.desc);
         String author = !TextUtils.isEmpty(item.who) ? item.who : GankApp.application.getResources().getString(R.string.no_author);
         holder.tvAuthor.setText(GankApp.application.getString(R.string.author, author));
+
+        holder.rlRoot.setOnClickListener(v -> {
+            Context context = holder.rlRoot.getContext();
+            Intent intent = new Intent(context, BrowserActivity.class);
+            intent.putExtra(Constants.URL_KEY, item.url);
+            context.startActivity(intent);
+        });
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {

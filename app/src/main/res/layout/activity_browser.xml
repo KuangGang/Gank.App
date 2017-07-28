@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <android.support.design.widget.AppBarLayout
+    <com.kuanggang.gankapp.widget.customview.WebViewLayout
+        android:id="@+id/webViewLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        app:layout_scrollFlags="scroll|enterAlways">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
@@ -17,15 +23,18 @@
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
             <ImageView
-                android:id="@+id/iv_category"
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                android:src="@drawable/icon_category_selector" />
-        </android.support.v7.widget.Toolbar>
-    </android.support.design.widget.AppBarLayout>
+                android:id="@+id/iv_back"
+                android:layout_width="28dp"
+                android:layout_height="38dp"
+                android:paddingBottom="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="10dp"
+                android:src="@mipmap/icon_back" />
 
-    <FrameLayout
-        android:id="@+id/framelayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-</LinearLayout>
+        </android.support.v7.widget.Toolbar>
+
+        <View
+            style="@style/divideLine"
+            android:layout_alignParentBottom="true" />
+    </RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>

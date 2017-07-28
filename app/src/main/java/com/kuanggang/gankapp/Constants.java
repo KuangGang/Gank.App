@@ -17,4 +17,8 @@ public interface Constants {
      * 服务器地址（干货集中营的）
      */
     String BASE_URL = "http://gank.io/api/";
+    /**
+     * 传递网址的key
+     */
+    String URL_KEY = "url";
 }
