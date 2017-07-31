@@ -3,6 +3,7 @@ package com.kuanggang.gankapp.widget.customview;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.support.annotation.DrawableRes;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -70,6 +71,12 @@ public class WebViewLayout extends RelativeLayout {
 
         settings.setUseWideViewPort(true); // 将图片调整到适合WebView的大小
         settings.setLoadWithOverviewMode(true); // 自适应屏幕
+        settings.setAllowFileAccess(true); // 允许访问文件
+        settings.setPluginState(WebSettings.PluginState.ON);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            settings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
+        }
 
         webView.setHorizontalScrollBarEnabled(false);
         webView.setScrollbarFadingEnabled(true);

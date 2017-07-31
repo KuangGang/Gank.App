@@ -3,19 +3,17 @@
 
     <item android:id="@android:id/background">
         <shape>
-            <corners android:radius="2dp" />
             <gradient
-                android:endColor="@android:color/transparent"
-                android:startColor="@android:color/transparent" />
+                android:endColor="@color/md_grey_400"
+                android:startColor="@color/md_grey_400" />
         </shape>
     </item>
     <item android:id="@android:id/progress">
         <clip>
             <shape>
-                <corners android:radius="2dp" />
                 <gradient
                     android:endColor="@color/md_black"
-                    android:startColor="@color/md_grey_800" />
+                    android:startColor="@color/md_black" />
 
             </shape>
         </clip>
