@@ -7,14 +7,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.kuanggang.gankapp.Constants;
 import com.kuanggang.gankapp.R;
 import com.kuanggang.gankapp.base.BaseActivity;
-import com.kuanggang.gankapp.data.DataRepository;
-import com.kuanggang.gankapp.data.local.LocalDataSource;
-import com.kuanggang.gankapp.data.remote.RemoteDataSource;
-import com.kuanggang.gankapp.utils.ActivityUtils;
+import com.kuanggang.gankapp.model.GankItem;
+import com.kuanggang.gankapp.model.type.CategoryEnum;
+import com.kuanggang.gankapp.utils.ToastUtil;
 import com.kuanggang.gankapp.widget.customview.WebViewLayout;
 
 import butterknife.BindView;
@@ -28,10 +28,14 @@ public class BrowserActivity extends BaseActivity {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @BindView(R.id.iv_back)
-    ImageView ivBack;
+    @BindView(R.id.iv_close)
+    ImageView ivClose;
     @BindView(R.id.webViewLayout)
     WebViewLayout webViewLayout;
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
+    @BindView(R.id.iv_category)
+    ImageView ivCategory;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,18 +56,24 @@ public class BrowserActivity extends BaseActivity {
     }
 
     private void initListener() {
-        ivBack.setOnClickListener(this);
+        ivClose.setOnClickListener(this);
     }
 
     private void loadUrl() {
-        String url = getIntent().getStringExtra(Constants.URL_KEY);
-        webViewLayout.loadUrl(url);
+        GankItem entity = (GankItem) getIntent().getSerializableExtra(Constants.URL_KEY);
+        if (entity == null) {
+            ToastUtil.show(this, R.string.error_date);
+            return;
+        }
+        tvTitle.setText(entity.type);
+        ivCategory.setImageResource(CategoryEnum.to(entity.type).drawableId);
+        webViewLayout.loadUrl(entity.url);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.iv_back:
+            case R.id.iv_close:
                 finish();
                 break;
         }
@@ -71,20 +81,23 @@ public class BrowserActivity extends BaseActivity {
 
     @Override
     protected void onResume() {
-        webViewLayout.onResume();
         super.onResume();
+        if (webViewLayout == null) return;
+        webViewLayout.onResume();
     }
 
     @Override
     protected void onPause() {
-        webViewLayout.onPause();
         super.onPause();
+        if (webViewLayout == null) return;
+        webViewLayout.onPause();
     }
 
     @Override
     protected void onDestroy() {
-        webViewLayout.onDestroy();
         super.onDestroy();
+        if (webViewLayout == null) return;
+        webViewLayout.onDestroy();
     }
 
     @Override

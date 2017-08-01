@@ -148,12 +148,14 @@ public class GankFragment extends BaseFragment implements GankContract.View {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        if (unbinder == null) return;
         unbinder.unbind();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
+        if (mPresenter == null) return;
         mPresenter.onDestory();
     }
 }

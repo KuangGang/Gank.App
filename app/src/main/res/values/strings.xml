@@ -6,4 +6,5 @@
     <string name="no_author">佚名</string>
     <string name="version">© 2017 Gank</string>
     <string name="author">◎ %s</string>
+    <string name="error_date">获取信息失败哟，请稍后重试</string>
 </resources>

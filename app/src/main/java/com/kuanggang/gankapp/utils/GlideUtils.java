@@ -62,13 +62,20 @@ public class GlideUtils {
                 .into(iv);
     }
 
+    // 加载网络图片
+    public void loadBlackDefaultImage(String url, ImageView iv) {
+        RequestOptions mOptions = new RequestOptions()
+                .fitCenter()
+                .placeholder(R.color.md_black)
+                .error(R.color.md_black)
+                .priority(Priority.HIGH)
+                .diskCacheStrategy(DiskCacheStrategy.ALL);
 
-    // 加载drawable图片
-    public void loadResImage() {
-    }
-
-    // 加载本地图片
-    public void loadLocalPathImage() {
+        Glide.with(GankApp.application)
+                .load(url)
+                .apply(mOptions)
+                .transition(new DrawableTransitionOptions().crossFade(500))
+                .into(iv);
     }
 
 }

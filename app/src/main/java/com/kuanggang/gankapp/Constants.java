@@ -18,7 +18,15 @@ public interface Constants {
      */
     String BASE_URL = "http://gank.io/api/";
     /**
-     * 传递网址的key
+     * 传递网址数据的key
      */
     String URL_KEY = "url";
+    /**
+     * 获取图片URL列表的key
+     */
+    String IMAGE_URL_LIST_KEY = "image_url_list";
+    /**
+     * 获取当前图片URL
+     */
+    String IMAGE = "image";
 }

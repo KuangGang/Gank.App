@@ -7,7 +7,8 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:elevation="0dp">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
@@ -18,15 +19,33 @@
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
             <ImageView
-                android:id="@+id/iv_back"
-                android:layout_width="28dp"
-                android:layout_height="38dp"
-                android:paddingBottom="10dp"
-                android:paddingRight="10dp"
-                android:paddingTop="10dp"
-                android:src="@mipmap/icon_back" />
+                android:id="@+id/iv_close"
+                android:layout_width="37dp"
+                android:layout_height="37dp"
+                android:layout_gravity="right"
+                android:layout_marginRight="5dp"
+                android:padding="10dp"
+                android:src="@mipmap/icon_close" />
 
+            <ImageView
+                android:id="@+id/iv_category"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@mipmap/icon_all" />
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:text="标题"
+                android:textColor="@color/colorTitle"
+                android:textSize="15sp" />
         </android.support.v7.widget.Toolbar>
+
+        <View
+            style="@style/divideLine"
+            app:layout_scrollFlags="scroll|enterAlways" />
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.widget.NestedScrollView
@@ -37,7 +56,8 @@
         <com.kuanggang.gankapp.widget.customview.WebViewLayout
             android:id="@+id/webViewLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     </android.support.v4.widget.NestedScrollView>
 </android.support.design.widget.CoordinatorLayout>

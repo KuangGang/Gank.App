@@ -1,12 +1,13 @@
 package com.kuanggang.gankapp.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * @author KG on 2017/6/14.
  */
 
-public class GankItem {
+public class GankItem implements Serializable{
     public String _id;
     public String desc;
     public String createdAt;

@@ -6,10 +6,15 @@ import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.text.TextUtils;
+import android.view.View;
 
+import com.jakewharton.rxbinding2.view.RxView;
 import com.kuanggang.gankapp.GankApp;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import io.reactivex.functions.Consumer;
 
 /**
  * @author KG on 2017/6/5.
@@ -73,11 +78,11 @@ public class AppUtil {
         return 1;
     }
 
-//    // 去掉重复点击
-//    public static void singleClick(View view, Consumer consumer) {
-//        RxView.clicks(view)
-//                .throttleFirst(500, TimeUnit.MILLISECONDS)
-//                .subscribe(consumer, Throwable::printStackTrace);
-//    }
+    // 去掉重复点击
+    public static void singleClick(View view, Consumer consumer) {
+        RxView.clicks(view)
+                .throttleFirst(500, TimeUnit.MILLISECONDS)
+                .subscribe(consumer, Throwable::printStackTrace);
+    }
 
 }

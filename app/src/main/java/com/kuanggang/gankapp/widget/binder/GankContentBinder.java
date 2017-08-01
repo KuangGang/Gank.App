@@ -17,6 +17,7 @@ import com.kuanggang.gankapp.GankApp;
 import com.kuanggang.gankapp.R;
 import com.kuanggang.gankapp.function.browser.BrowserActivity;
 import com.kuanggang.gankapp.model.GankItem;
+import com.kuanggang.gankapp.model.type.CategoryEnum;
 import com.kuanggang.gankapp.utils.DensityUtil;
 import com.kuanggang.gankapp.utils.GlideUtils;
 
@@ -60,7 +61,7 @@ public class GankContentBinder extends ItemViewBinder<GankItem, GankContentBinde
         holder.rlRoot.setOnClickListener(v -> {
             Context context = holder.rlRoot.getContext();
             Intent intent = new Intent(context, BrowserActivity.class);
-            intent.putExtra(Constants.URL_KEY, item.url);
+            intent.putExtra(Constants.URL_KEY, item);
             context.startActivity(intent);
         });
     }
