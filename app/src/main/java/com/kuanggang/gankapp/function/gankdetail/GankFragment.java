@@ -13,6 +13,9 @@ import android.widget.RelativeLayout;
 
 import com.kuanggang.gankapp.R;
 import com.kuanggang.gankapp.base.BaseFragment;
+import com.kuanggang.gankapp.data.DataRepository;
+import com.kuanggang.gankapp.data.local.LocalDataSource;
+import com.kuanggang.gankapp.data.remote.RemoteDataSource;
 import com.kuanggang.gankapp.model.GankItem;
 import com.kuanggang.gankapp.model.multitype.GankTimeDivide;
 import com.kuanggang.gankapp.model.multitype.GankTitle;
@@ -96,6 +99,7 @@ public class GankFragment extends BaseFragment implements GankContract.View {
         rvContent.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvContent.setAdapter(mContentAdapter);
 
+        if (mPresenter == null) return;
         // 控制显示内容
         refreshlayout.setVisibility(mPresenter.getRequestParams().isCategory() ? View.GONE : View.VISIBLE);
         rlCategory.setVisibility(mPresenter.getRequestParams().isCategory() ? View.VISIBLE : View.GONE);

@@ -4,12 +4,45 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorControlNormal">@android:color/black</item>
     </style>
 
-    <style name="divideLine">
+    <style name="DivideLine">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">1.5px</item>
-        <item name="android:layout_alignParentBottom">true</item>
         <item name="android:background">@color/colorLine</item>
+    </style>
+
+    <style name="TitleTextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">40dp</item>
+        <item name="android:textColor">@color/colorTitle</item>
+        <item name="android:textSize">17sp</item>
+    </style>
+
+    <style name="AboutContainer">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:paddingBottom">20dp</item>
+        <item name="android:paddingLeft">15dp</item>
+        <item name="android:paddingRight">15dp</item>
+        <item name="android:paddingTop">20dp</item>
+    </style>
+
+    <style name="AboutDescTextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/md_grey_500</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+
+    <style name="AboutTitleTextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorTitle</item>
+        <item name="android:textSize">18sp</item>
     </style>
 </resources>

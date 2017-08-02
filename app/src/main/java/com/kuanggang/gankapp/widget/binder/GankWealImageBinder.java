@@ -45,9 +45,15 @@ public class GankWealImageBinder extends ItemViewBinder<GankWealImage, GankWealI
         GlideUtils.newInstance().loadAutoHeightNetImage(item.imageUrl, holder.iv);
 
         holder.iv.setOnClickListener(v -> {
-            List<GankWealImage> items = (List<GankWealImage>) getAdapter().getItems();
-            if (items.size() <= 0) return;
+            List<Object> entities = (List<Object>) getAdapter().getItems();
+            List<GankWealImage> items = new ArrayList<>();
+            for (Object object : entities){
+                if (object instanceof GankWealImage) {
+                    items.add((GankWealImage) object);
+                }
+            }
 
+            if (items.size() <= 0) return;
             List<String> imgs = new ArrayList<>();
             for (GankWealImage entity : items) {
                 imgs.add(entity.imageUrl);

@@ -34,5 +34,7 @@
         android:textColor="@color/colorAuthor"
         android:textSize="11sp" />
 
-    <View style="@style/divideLine" />
+    <View
+        style="@style/DivideLine"
+        android:layout_alignParentBottom="true" />
 </RelativeLayout>

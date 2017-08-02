@@ -14,6 +14,7 @@ import com.kuanggang.gankapp.R;
 import com.kuanggang.gankapp.base.BaseActivity;
 import com.kuanggang.gankapp.model.GankItem;
 import com.kuanggang.gankapp.model.type.CategoryEnum;
+import com.kuanggang.gankapp.utils.TextUtil;
 import com.kuanggang.gankapp.utils.ToastUtil;
 import com.kuanggang.gankapp.widget.customview.WebViewLayout;
 
@@ -42,17 +43,11 @@ public class BrowserActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_browser);
         ButterKnife.bind(this);
+        TextUtil.setFakeBoldText(tvTitle);
 
-        initActionBar();
+        initActionBar(toolbar);
         initListener();
         loadUrl();
-    }
-
-    private void initActionBar() {
-        setSupportActionBar(toolbar);
-
-        ActionBar ab = getSupportActionBar();
-        ab.setTitle("");
     }
 
     private void initListener() {
@@ -66,7 +61,7 @@ public class BrowserActivity extends BaseActivity {
             return;
         }
         tvTitle.setText(entity.type);
-        ivCategory.setImageResource(CategoryEnum.to(entity.type).drawableId);
+        ivCategory.setImageResource(CategoryEnum.to(entity.type) == null ? R.mipmap.ic_launcher_round : CategoryEnum.to(entity.type).drawableId);
         webViewLayout.loadUrl(entity.url);
     }
 

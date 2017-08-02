@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorDivide"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_original"
+        style="@style/AboutContainer"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            style="@style/AboutTitleTextView"
+            android:text="@string/original_name" />
+
+        <TextView
+            style="@style/AboutDescTextView"
+            android:layout_marginTop="10dp"
+            android:lineSpacingExtra="3dp"
+            android:text="@string/thanks" />
+
+    </LinearLayout>
+
+    <View style="@style/DivideLine" />
+
+    <LinearLayout
+        android:id="@+id/ll_author"
+        style="@style/AboutContainer">
+
+        <TextView
+            style="@style/AboutTitleTextView"
+            android:text="@string/about_me" />
+
+        <TextView
+            android:id="@+id/tv_email"
+            style="@style/AboutDescTextView"
+            android:layout_marginTop="10dp"
+            android:text="@string/my_email" />
+
+        <TextView
+            android:id="@+id/tv_jianshu"
+            style="@style/AboutDescTextView"
+            android:layout_marginTop="3dp"
+            android:text="@string/my_jianshu" />
+
+        <TextView
+            android:id="@+id/tv_weibo"
+            style="@style/AboutDescTextView"
+            android:layout_marginTop="3dp"
+            android:text="@string/my_weibo" />
+    </LinearLayout>
+
+    <View style="@style/DivideLine" />
+
+    <LinearLayout
+        android:id="@+id/ll_version"
+        style="@style/AboutContainer"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            style="@style/AboutTitleTextView"
+            android:text="@string/update" />
+
+        <TextView
+            android:id="@+id/tv_version"
+            style="@style/AboutDescTextView"
+            android:layout_marginTop="10dp"
+            android:lineSpacingExtra="3dp"
+            android:text="@string/version" />
+
+    </LinearLayout>
+
+    <View style="@style/DivideLine" />
+</LinearLayout>

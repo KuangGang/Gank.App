@@ -13,4 +13,11 @@ public class BaseFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
 
     }
+
+    public void setOnClickListener(View... views){
+        if (views == null || views.length <= 0) return;
+        for (View view : views){
+            view.setOnClickListener(this);
+        }
+    }
 }

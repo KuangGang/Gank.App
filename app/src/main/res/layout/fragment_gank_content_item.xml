@@ -28,7 +28,7 @@
             android:lineSpacingExtra="8dp"
             android:text="@string/app_name"
             android:textColor="@color/colorTitle"
-            android:textSize="18sp" />
+            android:textSize="17sp" />
 
         <TextView
             android:id="@+id/tv_author"
@@ -42,5 +42,7 @@
             android:textSize="11sp" />
     </RelativeLayout>
 
-    <View style="@style/divideLine" />
+    <View
+        style="@style/DivideLine"
+        android:layout_alignParentBottom="true" />
 </RelativeLayout>

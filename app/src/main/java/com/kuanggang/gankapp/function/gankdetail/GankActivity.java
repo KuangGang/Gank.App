@@ -1,14 +1,20 @@
 package com.kuanggang.gankapp.function.gankdetail;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.kuanggang.gankapp.R;
 import com.kuanggang.gankapp.base.BaseActivity;
+import com.kuanggang.gankapp.function.about.AboutActivity;
+import com.kuanggang.gankapp.utils.ToastUtil;
 import com.kuanggang.gankapp.widget.adapter.GankPagerAdapter;
 
 import butterknife.BindView;
@@ -31,17 +37,10 @@ public class GankActivity extends BaseActivity {
         setContentView(R.layout.activity_gank);
         ButterKnife.bind(this);
 
-        initActionBar();
+        initActionBar(toolbar);
+        setMenuSelected(true);
         initTabLayoutViewPager();
         initListener();
-    }
-
-    private void initActionBar() {
-        setSupportActionBar(toolbar);
-
-        ActionBar ab = getSupportActionBar();
-        ab.setTitle("");
-        setMenuSelected(true);
     }
 
     private void initTabLayoutViewPager() {
@@ -53,6 +52,7 @@ public class GankActivity extends BaseActivity {
         ivCategory.setOnClickListener(this);
         ivContent.setOnClickListener(this);
         viewpager.addOnPageChangeListener(new GankPagerChangeListener());
+        toolbar.setOnMenuItemClickListener(new OnGankMenuItemClickListener());
     }
 
     @Override
@@ -81,6 +81,11 @@ public class GankActivity extends BaseActivity {
         viewpager.setCurrentItem(1);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.nav_menu, menu);
+        return true;
+    }
 
     private class GankPagerChangeListener implements ViewPager.OnPageChangeListener {
 
@@ -98,5 +103,39 @@ public class GankActivity extends BaseActivity {
         public void onPageScrollStateChanged(int state) {
 
         }
+    }
+
+    private class OnGankMenuItemClickListener implements Toolbar.OnMenuItemClickListener {
+
+        @Override
+        public boolean onMenuItemClick(MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.action_about:
+                    Intent intent = new Intent(GankActivity.this, AboutActivity.class);
+                    startActivity(intent);
+                    break;
+                case R.id.action_more:
+                    ToastUtil.show(GankActivity.this, getString(R.string.expect_toast));
+                    break;
+            }
+            return true;
+        }
+    }
+
+    private long firstTime = 0;
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
+            if (System.currentTimeMillis() - firstTime > 2000) {
+                ToastUtil.show(GankActivity.this, getString(R.string.clickmore_exit));
+                firstTime = System.currentTimeMillis();
+            } else {
+                finish();
+                System.exit(0);
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

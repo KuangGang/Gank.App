@@ -12,7 +12,7 @@ import com.kuanggang.gankapp.GankApp;
 import com.kuanggang.gankapp.R;
 
 /**
- * @author KG on 2017/1/23.
+ * @author KG on 2017/8/2.
  */
 public class GlideUtils {
 
@@ -62,7 +62,6 @@ public class GlideUtils {
                 .into(iv);
     }
 
-    // 加载网络图片
     public void loadBlackDefaultImage(String url, ImageView iv) {
         RequestOptions mOptions = new RequestOptions()
                 .fitCenter()
@@ -74,7 +73,6 @@ public class GlideUtils {
         Glide.with(GankApp.application)
                 .load(url)
                 .apply(mOptions)
-                .transition(new DrawableTransitionOptions().crossFade(500))
                 .into(iv);
     }
 

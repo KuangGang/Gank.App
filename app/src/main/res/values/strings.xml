@@ -4,7 +4,20 @@
     <string name="net_error">网络请求出错啦</string>
     <string name="no_data">没有数据啦</string>
     <string name="no_author">佚名</string>
-    <string name="version">© 2017 Gank</string>
+    <string name="copyright">© 2017 Gank</string>
     <string name="author">◎ %s</string>
     <string name="error_date">获取信息失败哟，请稍后重试</string>
+    <string name="about">关于</string>
+    <string name="original_name">干货集中营</string>
+    <string name="original_author">◎ 代码家</string>
+    <string name="thanks">由衷感谢代码家在「干货集中营」提供的干货和福利，感谢所有干货的作者的辛勤付出。 \nhttp://gank.io/</string>
+    <string name="about_me">关于我</string>
+    <string name="my_email">邮箱：kuanggang_android@163.com</string>
+    <string name="my_jianshu">简书：小筐子</string>
+    <string name="my_weibo">微博：@小筐子hhh</string>
+    <string name="update">检测新版本</string>
+    <string name="version">当前版本： %s</string>
+    <string name="expect">敬请期待</string>
+    <string name="expect_toast">更多功能陆续上线，敬请期待哟</string>
+    <string name="clickmore_exit">再按一次退出程序</string>
 </resources>
