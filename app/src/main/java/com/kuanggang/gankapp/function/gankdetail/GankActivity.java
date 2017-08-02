@@ -127,6 +127,11 @@ public class GankActivity extends BaseActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
+            if (viewpager != null && viewpager.getCurrentItem() == 1) {
+                viewpager.setCurrentItem(0);
+                setMenuSelected(true);
+                return true;
+            }
             if (System.currentTimeMillis() - firstTime > 2000) {
                 ToastUtil.show(GankActivity.this, getString(R.string.clickmore_exit));
                 firstTime = System.currentTimeMillis();
