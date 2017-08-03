@@ -8,17 +8,19 @@
 
 <br/>
 
-### Gif效果
+<!-- ### Gif效果 -->
 
-<img src="/res/RxGank.gif" style="width: 30%;">
+<!-- <img src="/res/RxGank.gif" style="width: 30%;"> -->
 
-<br/>
+<!-- <br/> -->
 
 ### 截屏图
 
 <table>
     <tr>
         <td><img src="/res/screenshot_category.png" style="width: 30%;"></td>
+    </tr>
+    <tr>
         <td><img src="/res/screenshot_weal.png" style="width: 30%;"></td>
     </tr>
 </table>
