@@ -61,7 +61,7 @@ public class BrowserActivity extends BaseActivity {
             return;
         }
         tvTitle.setText(entity.type);
-        ivCategory.setImageResource(CategoryEnum.to(entity.type) == null ? R.mipmap.ic_launcher_round : CategoryEnum.to(entity.type).drawableId);
+        ivCategory.setImageResource(CategoryEnum.to(entity.type) == null ? R.mipmap.ic_launcher_black_round : CategoryEnum.to(entity.type).drawableId);
         webViewLayout.loadUrl(entity.url);
     }
 

@@ -1,9 +1,17 @@
 package com.kuanggang.gankapp.data.remote;
 
+import android.text.TextUtils;
+
+import com.kuanggang.gankapp.GankApp;
 import com.kuanggang.gankapp.data.RepositoryContract;
+import com.kuanggang.gankapp.model.GankCategory;
 import com.kuanggang.gankapp.network.ApiService;
+import com.kuanggang.gankapp.utils.AppUtil;
+import com.kuanggang.gankapp.utils.ToastUtil;
+import com.kuanggang.gankapp.utils.update.VersionEntity;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Predicate;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subjects.PublishSubject;
 import io.reactivex.subjects.Subject;
@@ -26,6 +34,28 @@ public class RemoteDataSource implements RepositoryContract.RemoteRepository {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .filter(gankCategory -> gankCategory != null && gankCategory.results != null)
+                .subscribe(getDataCallback::onDataLoaded,
+                        getDataCallback::onDataNotAvailable);
+    }
+
+    /**
+     * 获取当前最新版
+     */
+    @Override
+    public void getNowVersion(RepositoryContract.GetDataCallback getDataCallback) {
+        ApiService.getApi().getNowVersion()
+                .takeUntil(lifecycle)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .filter(entity -> entity != null)
+                .filter(entity -> !TextUtils.isEmpty(entity.version))
+                .filter(versionEntity -> {
+                    if (Integer.valueOf(versionEntity.version) <= AppUtil.getVersionCode()){
+                        getDataCallback.onDataNotAvailable(null);
+                        return false;
+                    }
+                    return true;
+                })
                 .subscribe(getDataCallback::onDataLoaded,
                         getDataCallback::onDataNotAvailable);
     }

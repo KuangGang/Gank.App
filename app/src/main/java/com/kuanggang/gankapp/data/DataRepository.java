@@ -21,6 +21,11 @@ public class DataRepository implements RepositoryContract.RemoteRepository, Repo
     }
 
     @Override
+    public void getNowVersion(RepositoryContract.GetDataCallback getDataCallback) {
+        mRemoteDataSource.getNowVersion(getDataCallback);
+    }
+
+    @Override
     public void onDestory() {
         mRemoteDataSource.onDestory();
     }

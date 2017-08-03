@@ -2,6 +2,9 @@ apply plugin: 'com.android.application'
 apply plugin: 'android-apt'
 apply plugin: 'me.tatarka.retrolambda'
 
+Properties prop = new Properties()
+prop.load(new FileInputStream(file("../signing.properties")))
+
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
@@ -30,18 +33,40 @@ android {
         ignoreWarnings true
     }
 
+    signingConfigs {
+        release {
+            storeFile file(prop['KEYSTORE_FILEPATH'])
+            storePassword prop['STORE_PASSWORD']
+            keyAlias prop['KEY_ALIAS']
+            keyPassword prop['KEY_PASSWORD']
+        }
+    }
+
     buildTypes {
         debug {
             buildConfigField "boolean", "isDebug", "true"
             minifyEnabled false
+            signingConfig signingConfigs.release // apk签名
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
         release {
             buildConfigField "boolean", "isDebug", "false"
             minifyEnabled false
+            signingConfig signingConfigs.release // apk签名
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            applicationVariants.all {
+                variant -> generateAppName(variant)
+            }
         }
+    }
+}
+
+//生成自定义App名称
+def generateAppName(variant) {
+    variant.outputs.each { output ->
+        def file = output.outputFile
+        output.outputFile = new File(file.parent, "com.kuanggang.gank_v" + android.defaultConfig.versionName + ".apk")
     }
 }
 

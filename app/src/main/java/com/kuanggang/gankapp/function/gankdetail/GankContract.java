@@ -1,5 +1,7 @@
 package com.kuanggang.gankapp.function.gankdetail;
 
+import android.app.Activity;
+
 import com.kuanggang.gankapp.base.BasePresenter;
 import com.kuanggang.gankapp.base.BaseView;
 import com.kuanggang.gankapp.model.GankCategory;
@@ -32,6 +34,8 @@ interface GankContract {
         GankRequestParam getRequestParams();
 
         GankResponseParam getResponseParams();
+
+        void checkNewVersion(Activity activity);
 
         void onDestory();
 

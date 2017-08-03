@@ -18,6 +18,7 @@ import com.kuanggang.gankapp.utils.ToastUtil;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import io.reactivex.functions.Consumer;
 
 /**
  * @author KG on 2017/6/5.
@@ -71,16 +72,20 @@ public class AboutFragment extends BaseFragment implements AboutContract.View {
     }
 
     private void initListener() {
-        setOnClickListener(llOriginal, tvEmail, tvJianshu, tvWeibo, llVersion);
+        AppUtil.singleClick(llOriginal, o -> {
+            if (mPresenter == null) return;
+            mPresenter.openGankIO(getActivity());
+        });
+        AppUtil.singleClick(llVersion, o -> {
+            if (mPresenter == null) return;
+            mPresenter.checkNewVersion(getActivity());
+        });
+        setOnClickListener(tvEmail, tvJianshu, tvWeibo);
     }
 
     @Override
     public void onClick(View v) {
-        if (mPresenter == null) return;
-        switch (v.getId()){
-            case R.id.ll_original:
-                mPresenter.openGankIO(getActivity());
-                break;
+        switch (v.getId()) {
             case R.id.tv_email:
                 copyToClipBoard("kuanggang_android@163.com", "邮箱已复制");
                 break;
@@ -90,14 +95,17 @@ public class AboutFragment extends BaseFragment implements AboutContract.View {
             case R.id.tv_weibo:
                 copyToClipBoard("小筐子hhh", "微博已复制");
                 break;
-            case R.id.ll_version:
-                break;
         }
     }
 
     private void copyToClipBoard(String copyText, String toastText) {
         TextUtil.copyToClipBoard(copyText);
         ToastUtil.show(getActivity(), toastText);
+    }
+
+    @Override
+    public void showToast(String str) {
+        ToastUtil.show(getActivity(), str);
     }
 
     @Override
@@ -113,4 +121,5 @@ public class AboutFragment extends BaseFragment implements AboutContract.View {
         if (mPresenter == null) return;
         mPresenter.onDestory();
     }
+
 }

@@ -20,4 +20,9 @@
     <string name="expect">敬请期待</string>
     <string name="expect_toast">更多功能陆续上线，敬请期待哟</string>
     <string name="clickmore_exit">再按一次退出程序</string>
+    <string name="ok">确认</string>
+    <string name="cancel">取消</string>
+    <string name="update_dialog_title">应用更新</string>
+    <string name="update_no">暂不</string>
+    <string name="update_rightnow">立即下载</string>
 </resources>

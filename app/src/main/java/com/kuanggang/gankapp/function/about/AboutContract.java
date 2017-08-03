@@ -1,5 +1,6 @@
 package com.kuanggang.gankapp.function.about;
 
+import android.app.Activity;
 import android.content.Context;
 
 import com.kuanggang.gankapp.base.BasePresenter;
@@ -14,13 +15,14 @@ import com.kuanggang.gankapp.model.param.GankResponseParam;
 interface AboutContract {
 
     interface View extends BaseView<Presenter> {
-
+        void showToast(String str);
     }
 
     interface Presenter extends BasePresenter {
         void openGankIO(Context context);
 
-        void onDestory();
+        void checkNewVersion(Activity activity);
 
+        void onDestory();
     }
 }

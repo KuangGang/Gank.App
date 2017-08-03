@@ -105,6 +105,8 @@ public class GankFragment extends BaseFragment implements GankContract.View {
         rlCategory.setVisibility(mPresenter.getRequestParams().isCategory() ? View.VISIBLE : View.GONE);
 
         mPresenter.loadFirstPage();
+        if (mPresenter.getRequestParams().isCategory())
+            mPresenter.checkNewVersion(getActivity());
     }
 
     private void initListener() {

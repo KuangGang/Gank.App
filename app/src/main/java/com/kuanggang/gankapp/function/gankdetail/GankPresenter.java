@@ -1,5 +1,6 @@
 package com.kuanggang.gankapp.function.gankdetail;
 
+import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
@@ -18,6 +19,8 @@ import com.kuanggang.gankapp.model.type.CategoryEnum;
 import com.kuanggang.gankapp.model.type.PageSizeEnum;
 import com.kuanggang.gankapp.utils.DateUtil;
 import com.kuanggang.gankapp.utils.ToastUtil;
+import com.kuanggang.gankapp.utils.update.UpdateHelper;
+import com.kuanggang.gankapp.utils.update.VersionEntity;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -34,6 +37,7 @@ public class GankPresenter implements GankContract.Presenter {
 
     private GankRequestParam mRequestParams;
     private GankResponseParam mResponseParams;
+    private UpdateHelper updateHelper;
 
     public GankPresenter(@NonNull GankContract.View gankView, DataRepository dataRepository, boolean isCategory) {
         mGankView = gankView;
@@ -156,7 +160,25 @@ public class GankPresenter implements GankContract.Presenter {
     }
 
     @Override
+    public void checkNewVersion(Activity activity) {
+        mDataRepository.getNowVersion(new RepositoryContract.GetDataCallback<VersionEntity>() {
+            @Override
+            public void onDataLoaded(VersionEntity entity) {
+                updateHelper = new UpdateHelper(activity);
+                updateHelper.dealWithVersion(entity);
+            }
+
+            @Override
+            public void onDataNotAvailable(Throwable throwable) {
+            }
+        });
+    }
+
+    @Override
     public void onDestory() {
         mDataRepository.onDestory();
+        if (updateHelper != null){
+            updateHelper.unInit();
+        }
     }
 }

@@ -19,6 +19,8 @@ public interface RepositoryContract {
     interface RemoteRepository extends BaseRemoteRepository {
         void getGankListByCategory(String category, int page, int size, GetDataCallback getDataCallback);
 
+        void getNowVersion(GetDataCallback getDataCallback);
+
         void onDestory();
     }
 
