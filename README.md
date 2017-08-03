@@ -19,11 +19,7 @@
 <table>
     <tr>
         <td><img src="/res/screenshot_category.png" style="width: 30%;"></td>
-        <td><img src="/res/screenshot_list.png" style="width: 30%;"></td>
-    </tr>
-    <tr>
         <td><img src="/res/screenshot_weal.png" style="width: 30%;"></td>
-        <td><img src="/res/screenshot_image.png" style="width: 30%;"></td>
     </tr>
 </table>
 
@@ -48,7 +44,7 @@
 
 ### 关于我
 
-个人邮箱：kuanggang_android@163.com
+个人邮箱：kuanggang_android@163.com  
 [GitHub主页](https://github.com/KuangGang)  
 [简书主页](http://www.jianshu.com/u/add646e11b85)  
 [新浪微博](http://weibo.com/u/1631697645) 
