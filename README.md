@@ -19,8 +19,6 @@
 <table>
     <tr>
         <td><img src="/res/screenshot_category.png" style="width: 30%;"></td>
-    </tr>
-    <tr>
         <td><img src="/res/screenshot_weal.png" style="width: 30%;"></td>
     </tr>
 </table>
