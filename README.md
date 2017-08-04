@@ -8,11 +8,11 @@
 
 <br/>
 
-<!-- ### Gif效果 -->
+ ### 演示GIF
 
-<!-- <img src="/res/RxGank.gif" style="width: 30%;"> -->
+ <img src="/res/show.gif" style="width: 30%;">
 
-<!-- <br/> -->
+ <br/>
 
 ### 截屏图
 
