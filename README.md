@@ -4,7 +4,7 @@
 
 由衷感谢代码家在[「干货集中营」](http://gank.io/)提供的干货和福利，感谢所有干货的作者的辛勤付出。
 
-该项目使用MVP+RxJava2+Retrofit2实现。
+该项目使用MVP+RxJava2+Retrofit2实现，后续调整敬请期待。
 
 <br/>
 

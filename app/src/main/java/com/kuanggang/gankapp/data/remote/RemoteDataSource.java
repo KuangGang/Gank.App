@@ -2,16 +2,11 @@ package com.kuanggang.gankapp.data.remote;
 
 import android.text.TextUtils;
 
-import com.kuanggang.gankapp.GankApp;
 import com.kuanggang.gankapp.data.RepositoryContract;
-import com.kuanggang.gankapp.model.GankCategory;
 import com.kuanggang.gankapp.network.ApiService;
 import com.kuanggang.gankapp.utils.AppUtil;
-import com.kuanggang.gankapp.utils.ToastUtil;
-import com.kuanggang.gankapp.utils.update.VersionEntity;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Predicate;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subjects.PublishSubject;
 import io.reactivex.subjects.Subject;
