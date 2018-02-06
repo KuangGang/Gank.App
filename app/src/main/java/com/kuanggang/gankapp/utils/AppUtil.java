@@ -5,6 +5,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.view.View;
 
@@ -58,12 +59,12 @@ public class AppUtil {
             PackageInfo packInfo = packageManager.getPackageInfo(GankApp.application.getPackageName(), 0);
             String version = packInfo.versionName;
             if (!TextUtils.isEmpty(version)) {
-                return "V" + version;
+                return version;
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "V1.0";
+        return "1.0";
     }
 
     // 获取当前应用的版本号
@@ -76,6 +77,83 @@ public class AppUtil {
             e.printStackTrace();
         }
         return 1;
+    }
+
+    /**
+     * 获取当前手机系统版本号
+     */
+    public static String getSystemVersion() {
+        return android.os.Build.VERSION.RELEASE;
+    }
+
+    /**
+     * 获取手机型号
+     */
+    public static String getSystemModel() {
+        return android.os.Build.MODEL;
+    }
+
+    /**
+     * 获取手机厂商
+     */
+    public static String getDeviceBrand() {
+        return android.os.Build.BRAND;
+    }
+
+    /**
+     * 获取当前网络类型
+     */
+    public static String getNetworkTypeName() {
+        ConnectivityManager connectMgr = (ConnectivityManager) GankApp.application.getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectMgr != null) {
+            NetworkInfo info = connectMgr.getActiveNetworkInfo();
+            if (info != null) {
+                switch (info.getType()) {
+                    case ConnectivityManager.TYPE_WIFI:
+                        return "WIFI";
+                    case ConnectivityManager.TYPE_MOBILE:
+                        return getNetworkTypeName(info.getSubtype());
+                }
+            }
+        }
+        return getNetworkTypeName(TelephonyManager.NETWORK_TYPE_UNKNOWN);
+    }
+
+    private static String getNetworkTypeName(int type) {
+        switch (type) {
+            case TelephonyManager.NETWORK_TYPE_GPRS:
+                return "GPRS";
+            case TelephonyManager.NETWORK_TYPE_EDGE:
+                return "EDGE";
+            case TelephonyManager.NETWORK_TYPE_UMTS:
+                return "UMTS";
+            case TelephonyManager.NETWORK_TYPE_HSDPA:
+                return "HSDPA";
+            case TelephonyManager.NETWORK_TYPE_HSUPA:
+                return "HSUPA";
+            case TelephonyManager.NETWORK_TYPE_HSPA:
+                return "HSPA";
+            case TelephonyManager.NETWORK_TYPE_CDMA:
+                return "CDMA";
+            case TelephonyManager.NETWORK_TYPE_EVDO_0:
+                return "CDMA - EvDo rev. 0";
+            case TelephonyManager.NETWORK_TYPE_EVDO_A:
+                return "CDMA - EvDo rev. A";
+            case TelephonyManager.NETWORK_TYPE_EVDO_B:
+                return "CDMA - EvDo rev. B";
+            case TelephonyManager.NETWORK_TYPE_1xRTT:
+                return "CDMA - 1xRTT";
+            case TelephonyManager.NETWORK_TYPE_LTE:
+                return "LTE";
+            case TelephonyManager.NETWORK_TYPE_EHRPD:
+                return "CDMA - eHRPD";
+            case TelephonyManager.NETWORK_TYPE_IDEN:
+                return "iDEN";
+            case TelephonyManager.NETWORK_TYPE_HSPAP:
+                return "HSPA+";
+            default:
+                return "UNKNOWN";
+        }
     }
 
     // 去掉重复点击
